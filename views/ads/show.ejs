@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show</title>
+</head>
+
+<body>
+
+    <h1>
+        <%=ad.title%>
+    </h1>
+    <h2>
+        Price: <%=ad.price%>
+    </h2>
+    <p>
+        Description: <%=ad.description%>
+    </p>
+    <p>
+        <a href="/ads/<%=ad._id%>/edit">Edytuj ogłoszenie</a>
+    </p>
+    <p>
+    <form action="/ads/<%=ad._id%>?_method=DELETE" method="POST">
+        <button>Usuń ogłoszenie</button>
+    </form>
+    </p>
+    <footer>
+        <a href="/ads">Wszystkie ogłoszenia</a>
+    </footer>
+
+</body>
+
+</html>

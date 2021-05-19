@@ -1,8 +1,14 @@
 {
+  "main": "app.js",
+  "scripts": {
+    "sass": "node-sass sass/main.scss public/css/style.css -w"
+  },
   "dependencies": {
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "method-override": "^3.0.0",
     "mongoose": "^5.12.9",
-    "node-sass": "^6.0.0"
+    "node-sass": "^6.0.0",
+    "serve-favicon": "^2.5.0"
   }
 }

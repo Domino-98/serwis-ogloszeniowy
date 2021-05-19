@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edytuj ogłoszenie</title>
+</head>
+
+<body>
+
+    <form action="/ads/<%=ad._id%>?_method=PUT" method="POST">
+        <div>
+            <label for="title">Tytuł ogłoszenia</label>
+            <input type="text" id="title" name="ad[title]" value="<%=ad.title%>">
+        </div>
+        <div>
+            <label for="price">Cena</label>
+            <input type="text" id="price" name="ad[price]" value="<%=ad.price%>">
+        </div>
+        <div>
+            <label for="description">Opis</label>
+            <input type="text" id="description" name="ad[description]" value="<%=ad.description%>">
+        </div>
+        <button>Edytuj ogłoszenie</button>
+    </form>
+    <a href="/ads/<%=ad._id%>">Powrót do ogłoszenia</a>
+
+
+</body>
+
+</html>
