@@ -1,25 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('layouts/boilerplate') %>
+<h1>Wszystkie ogłoszenia</h1>
+<div>
+    <a href="/ads/new">Dodaj ogłoszenie</a>
+</div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADVERY - Ogłoszenia</title>
-</head>
+<div class="container">
 
-<body>
+    <header class="header">
 
-    <h1>Wszystkie ogłoszenia</h1>
-    <div>
-        <a href="/ads/new">Dodaj ogłoszenie</a>
-    </div>
-    <ul>
+        <h1 class="heading-1 u-center-text">Kategorie</h1>
+
+        <div class="categories u-margin-top">
+            <div class="categories__item">
+                <a href="#" class="categories__link">
+                   <i class="fas fa-car categories__icon"></i>
+                   <span href="#" class="categories__text">Motoryzacja</span>
+                </a>
+            </div>
+   
+           <div class="categories__item">
+                 <a href="#" class="categories__link">
+                   <i class="fas fa-laptop categories__icon"></i>
+                   <span href="#" class="categories__text">Elektronika</span>
+                 </a>
+           </div>
+   
+           <div class="categories__item">
+               <a href="#" class="categories__link">
+                   <i class="fas fa-paw categories__icon"></i>
+                   <span href="#" class="categories__text">Zwierzęta</span>    
+               </a>
+           </div>
+   
+           <div class="categories__item">
+               <a href="#" class="categories__link">
+                   <i class="fas fa-tractor categories__icon"></i>
+                   <span href="#" class="categories__text">Rolnictwo</span>    
+               </a>
+           </div>
+   
+           <div class="categories__item">
+               <a href="#" class="categories__link">
+                   <i class="fas fa-futbol categories__icon"></i>
+                   <span href="#" class="categories__text">Sport</span>
+               </a>
+           </div>
+   
+           <div class="categories__item">
+               <a href="#" class="categories__link">
+                   <i class="fas fa-baby-carriage categories__icon"></i>
+                   <span href="#" class="categories__text">Dla dzieci</span>
+               </a>
+           </div>
+   
+           <div class="categories__item">
+               <a href="#" class="categories__link">
+                   <i class="fas fa-home categories__icon"></i>
+                   <span href="#" class="categories__text">Nieruchomości</span>
+               </a>
+           </div>
+   
+           <div class="categories__item">
+               <a href="#" class="categories__link">
+                   <i class="fas fa-brush categories__icon"></i>
+                   <span href="#" class="categories__text">Usługi</span>
+               </a>
+           </div>
+   
+           <div class="categories__item">
+               <a href="#" class="categories__link">
+                   <i class="fas fa-music categories__icon"></i>
+                   <span href="#" class="categories__text">Muzyka</span>
+               </a>
+           </div>
+       </div>
+
+    </header>
+
+
+    <h1 class="heading-1 u-center-text u-margin-top-big">Wszystkie ogłoszenia</h1>
+
+
+    <main class="main u-margin-top">
+
         <% ads.forEach(ad => { %>
-            <li><a href="ads/<%=ad._id%>"><%= ad.title %></a></li>
+        <section class="ad">
+
+            <img src="https://images.unsplash.com/photo-1619441207978-3d326c46e2c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80" alt="Image" class="ad__image">
+
+            <h2 class="heading-2 u-margin-top-small">
+                <a href="ads/<%=ad._id%>" class="ad__title"><%= ad.title %></a>
+            </h2>
+
+            <span class="ad__price"><%=ad.price%> zł</span>
+
+        </section>
         <% }); %>
-    </ul>
+    </main>
 
-</body>
-
-</html>
+</div>

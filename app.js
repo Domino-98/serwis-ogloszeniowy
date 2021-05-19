@@ -5,6 +5,7 @@ const sass = require('node-sass');
 const path = require('path');
 const favicon = require('serve-favicon');
 const mongoose = require('mongoose');
+const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
 const Ad = require('./models/ads');
 
@@ -24,6 +25,7 @@ db.once("open", () => {
 app.use(favicon(path.join(__dirname,'public','img','favicon.ico')));
 app.use('/public', express.static('public')); 
 
+app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 

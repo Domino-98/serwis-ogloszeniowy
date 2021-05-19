@@ -1,15 +1,33 @@
-* {
-    margin: 0;
-    padding: 0;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+
+// Color Variables
+$color-primary: #457b9d;
+$color-primary-light: #a8dadc;
+$color-primary-dark: #1d3557;
+
+$color-tertiary: #e63946;
+
+$color-blue-light: #f1faee;
+$color-grey-light-1: #f9f7f6;
+$color-grey-light-2: #aaa;
 
 *,
 *::before,
 *::after {
+    margin: 0;
+    padding: 0;
     box-sizing: inherit;
+    scroll-behavior: smooth;
 }
 
 html {
     box-sizing: border-box;
     font-size: 62.5%; // 1rem = 10px;
+}
+
+body {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    background-color: #e5e5e5;
 }

@@ -1,12 +1,110 @@
-* {
-  margin: 0;
-  padding: 0; }
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap");
 *,
 *::before,
 *::after {
-  box-sizing: inherit; }
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  scroll-behavior: smooth; }
 
 html {
   box-sizing: border-box;
   font-size: 62.5%; }
+
+body {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  background-color: #e5e5e5; }
+
+.categories {
+  display: flex; }
+  .categories__link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all .3s; }
+    .categories__link:link, .categories__link:visited {
+      color: #000; }
+    .categories__link:hover {
+      transform: scale(1.15); }
+  .categories__item {
+    margin: 2.5rem 3rem; }
+  .categories__icon {
+    font-size: 6rem;
+    padding-bottom: 1rem;
+    color: #14213d;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); }
+  .categories__text {
+    margin-top: 1rem;
+    font-size: 1.6rem; }
+
+.ad {
+  margin: 2rem 2rem;
+  background-color: #fff;
+  padding: 2rem;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+  width: calc(50% - 4rem);
+  border-radius: 1rem; }
+  .ad__title:link, .ad__title:visited {
+    text-decoration: none;
+    color: #000; }
+  .ad__price {
+    font-size: 1.8rem; }
+  .ad__image {
+    width: 100%;
+    border-radius: 1rem; }
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column; }
+
+.header {
+  background-color: #ffffff;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 6rem 0;
+  padding: 6rem 0;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5); }
+
+.main {
+  min-height: 100vh;
+  width: 66%;
+  display: flex;
+  flex-wrap: wrap; }
+
+.heading-1 {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #14213d;
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5); }
+
+.heading-2 {
+  font-size: 2.5rem;
+  color: #14213d; }
+
+.u-center-text {
+  text-align: center !important; }
+
+.u-margin-top {
+  margin-top: 3rem !important; }
+
+.u-margin-bottom {
+  margin-bottom: 3rem !important; }
+
+.u-margin-top-big {
+  margin-top: 6rem !important; }
+
+.u-margin-bottom-big {
+  margin-bottom: 6rem !important; }
+
+.u-margin-top-small {
+  margin-top: 1.5rem; }
+
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem; }
