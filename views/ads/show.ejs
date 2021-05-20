@@ -1,21 +1,30 @@
 <% layout('layouts/boilerplate') %>
-    <h1>
-        <%=ad.title%>
-    </h1>
-    <h2>
-        Price: <%=ad.price%>
-    </h2>
-    <p>
-        Description: <%=ad.description%>
-    </p>
-    <p>
-        <a href="/ads/<%=ad._id%>/edit">Edytuj ogłoszenie</a>
-    </p>
-    <p>
-    <form action="/ads/<%=ad._id%>?_method=DELETE" method="POST">
-        <button>Usuń ogłoszenie</button>
-    </form>
-    </p>
-    <footer>
-        <a href="/ads">Wszystkie ogłoszenia</a>
-    </footer>
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1619441207978-3d326c46e2c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80" alt="Image" class="card__image">
+
+        <div class="card__content">
+            <div class="card__title">
+                <h2><%=ad.title%></h2>
+            </div>
+
+            <div class="card__price">
+                <span>Cena: <%=ad.price%> zł</span>
+            </div>
+
+            <div class="card__description">
+                <p><%=ad.description%></p>
+            </div>
+
+            <div class="card__buttons">
+                <div>              
+                     <a class="btn btn--small ad-edit" href="/ads/<%=ad._id%>/edit">Edytuj ogłoszenie</a></div>
+                <div>
+                    <form action="/ads/<%=ad._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn--small ad-delete">Usuń ogłoszenie</button>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>

@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
-
 // Color Variables
 $color-primary: #457b9d;
 $color-primary-light: #a8dadc;
-$color-primary-dark: #1d3557;
+$color-primary-dark: #14213d;
 
-$color-tertiary: #e63946;
+$color-tertiary: #ef233c;
 
-$color-blue-light: #f1faee;
-$color-grey-light-1: #f9f7f6;
+$color-grey-light-1: #e4e4e4;
 $color-grey-light-2: #aaa;
+
+$color-grey-dark-1: #777777;
+$color-grey-dark-2: #333;
 
 *,
 *::before,
@@ -29,5 +29,5 @@ body {
     font-family: Roboto, Arial, Helvetica, sans-serif;
     font-weight: 400;
     line-height: 1.6;
-    background-color: #e5e5e5;
+    background-color: #edf2f4;
 }

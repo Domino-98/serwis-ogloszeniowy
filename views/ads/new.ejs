@@ -1,19 +1,19 @@
 <% layout('layouts/boilerplate') %>
-<div class="ad__form">
-    <form class="form" action="/ads" method="POST">
-        <div class="form__group">
-            <label class="form__label" for="title">Tytuł ogłoszenia</label>
-            <input class="form__input" type="text" id="title" name="ad[title]">
+<div class="new-ad">
+    <h1 class="heading-1 u-margin-bottom u-center-text">Dodaj nowe ogłoszenie</h1>
+    <form class="new-ad__form" action="/ads" method="POST">
+        <div class="new-ad__group">
+            <label class="new-ad__label" for="title">Tytuł ogłoszenia</label>
+            <input class="new-ad__input" type="text" id="title" name="ad[title]">
         </div>
-        <div class="form__group">
-            <label class="form__label" for="price">Cena</label>
-            <input class="form__input" type="text" id="price" name="ad[price]">
+        <div class="new-ad__group">
+            <label class="new-ad__label" for="price">Cena</label>
+            <input class="new-ad__input" type="text" id="price" name="ad[price]">
         </div>
-        <div class="form__group">
-            <label class="form__label" for="description">Opis</label>
-            <input class="form__input" type="text" id="description" name="ad[description]">
+        <div class="new-ad__group u-margin-bottom-big">
+            <label class="new-ad__label" for="description">Opis</label>
+            <textarea class="new-ad__input"  id="description" name="ad[description]" rows="5"></textarea>
         </div>
-        <button>Dodaj ogłoszenie</button>
+        <button class="btn">Dodaj ogłoszenie</button>
     </form>
-    <a href="/ads">Wszystkie ogłoszenia</a>
 </div>
