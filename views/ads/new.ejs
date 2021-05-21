@@ -1,19 +1,32 @@
 <% layout('layouts/boilerplate') %>
 <div class="new-ad">
-    <h1 class="heading-1 u-margin-bottom u-center-text">Dodaj nowe ogłoszenie</h1>
+    <h1 class="heading-1 u-margin-bottom u-center-text">Dodaj ogłoszenie</h1>
     <form class="new-ad__form" action="/ads" method="POST">
-        <div class="new-ad__group">
-            <label class="new-ad__label" for="title">Tytuł ogłoszenia</label>
-            <input class="new-ad__input" type="text" id="title" name="ad[title]">
+        <div class="new-ad__group">            
+           <input class="new-ad__input" type="text" id="title" name="ad[title]" autofocus required>
+           <label for="title" class="new-ad__label">Tytuł</label>
         </div>
         <div class="new-ad__group">
-            <label class="new-ad__label" for="price">Cena</label>
-            <input class="new-ad__input" type="text" id="price" name="ad[price]">
+           <input class="new-ad__input" type="number" step="0.01" id="price" name="ad[price]" onkeypress="return isNumberKey(event)" required>
+           <label for="title" class="new-ad__label">Cena</label>
         </div>
         <div class="new-ad__group u-margin-bottom-big">
-            <label class="new-ad__label" for="description">Opis</label>
-            <textarea class="new-ad__input"  id="description" name="ad[description]" rows="5"></textarea>
+           <textarea class="new-ad__input"  id="description" name="ad[description]" rows="4" required></textarea>
+           <label for="title" class="new-ad__label">Opis</label>
         </div>
-        <button class="btn">Dodaj ogłoszenie</button>
+        <button class="btn" id="addBtn">Dodaj ogłoszenie</button>
     </form>
 </div>
+
+<script src="../../public/js/formValidation.js"></script> 
+
+<script>
+   function isNumberKey(evt) {
+      var charCode=(evt.which)? evt.which:evt.keyCode;
+      if (charCode!=46&&charCode>31
+         &&(charCode<48||charCode>57))
+         return false;
+
+      return true;
+   }
+</script>

@@ -3,16 +3,16 @@
     <h1 class="heading-1 u-margin-bottom u-center-text">Edytuj ogłoszenie</h1>
     <form class="new-ad__form" action="/ads/<%=ad._id%>?_method=PUT" method="POST">
         <div class="new-ad__group">
-            <label class="new-ad__label" for="title">Tytuł ogłoszenia</label>
-            <input class="new-ad__input" type="text" id="title" name="ad[title]" value="<%=ad.title%>">
+            <input class="new-ad__input" type="text" id="title" name="ad[title]" required value="<%=ad.title%>">
+            <label class="new-ad__label" for="title">Tytuł</label>
         </div>
         <div class="new-ad__group">
+            <input class="new-ad__input" type="text" id="price" name="ad[price]" required value="<%=ad.price%>">
             <label class="new-ad__label" for="price">Cena</label>
-            <input class="new-ad__input" type="text" id="price" name="ad[price]" value="<%=ad.price%>">
         </div>
         <div class="new-ad__group u-margin-bottom-big">
+            <textarea class="new-ad__input"  id="description" name="ad[description]" rows="4" required><%=ad.description%></textarea>
             <label class="new-ad__label" for="description">Opis</label>
-            <textarea class="new-ad__input"  id="description" name="ad[description]" rows="5"><%=ad.description%></textarea>
         </div>
         <button class="btn">Edytuj</button>
     </form>
