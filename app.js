@@ -1,13 +1,13 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const sass = require('node-sass');
 const path = require('path');
 const favicon = require('serve-favicon');
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
 const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./utils/ExpressError');
+const { adSchema } = require('./schemas');
 const methodOverride = require('method-override');
 const Ad = require('./models/ads');
 
@@ -34,6 +34,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
+const validateAd = (req, res, next) => {
+    const result = adSchema.validate(req.body);
+    if (result.error) {
+        const msg = result.error.details.map(el => el.message).join(',');
+        throw new ExpressError(msg, 400);
+    } else {
+        next();
+    }
+}
+
 app.get('/', (req, res) => {
     res.render('home');
 });
@@ -47,8 +57,7 @@ app.get('/ads/new', (req, res) => {
     res.render('ads/new');
 });
 
-app.post('/ads', catchAsync(async (req, res, next) => {
-    if (!req.body.ad) throw new ExpressError('Niepoprawne dane ogłoszenia', 400);
+app.post('/ads', validateAd, catchAsync(async (req, res, next) => {
     const ad = new Ad(req.body.ad);
     await ad.save();
     res.redirect(`/ads/${ad._id}`);
@@ -64,7 +73,7 @@ app.get('/ads/:id/edit', catchAsync(async (req,res) =>{
     res.render(`ads/edit`, { ad });
 }));
 
-app.put('/ads/:id', catchAsync(async (req,res) => {
+app.put('/ads/:id', validateAd, catchAsync(async (req,res) => {
     const ad = await Ad.findByIdAndUpdate(req.params.id, { ...req.body.ad });
     res.redirect(`/ads/${ad._id}`);
 }));
