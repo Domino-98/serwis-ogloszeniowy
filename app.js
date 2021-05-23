@@ -6,6 +6,8 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
+const catchAsync = require('./utils/catchAsync');
+const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
 const Ad = require('./models/ads');
 
@@ -45,30 +47,41 @@ app.get('/ads/new', (req, res) => {
     res.render('ads/new');
 });
 
-app.post('/ads', async (req, res) => {
+app.post('/ads', catchAsync(async (req, res, next) => {
+    if (!req.body.ad) throw new ExpressError('Niepoprawne dane ogłoszenia', 400);
     const ad = new Ad(req.body.ad);
     await ad.save();
     res.redirect(`/ads/${ad._id}`);
-});
+}));
 
-app.get('/ads/:id', async (req,res) => {
+app.get('/ads/:id', catchAsync(async (req,res) => {
     const ad = await Ad.findById(req.params.id);
     res.render('ads/show', { ad });
-});
+}));
 
-app.get('/ads/:id/edit', async (req,res) =>{
+app.get('/ads/:id/edit', catchAsync(async (req,res) =>{
     const ad = await Ad.findById(req.params.id);
     res.render(`ads/edit`, { ad });
-});
+}));
 
-app.put('/ads/:id', async (req,res) => {
+app.put('/ads/:id', catchAsync(async (req,res) => {
     const ad = await Ad.findByIdAndUpdate(req.params.id, { ...req.body.ad });
     res.redirect(`/ads/${ad._id}`);
-});
+}));
 
-app.delete('/ads/:id', async (req, res) => {
+app.delete('/ads/:id', catchAsync(async (req, res) => {
     await Ad.findByIdAndDelete(req.params.id);
     res.redirect('/ads');
+}));
+
+app.all('*', (req, res, next) => {
+    next(new ExpressError('Nie znaleziono strony', 404));
+})
+
+app.use((err, req, res, next) => {
+    const { statusCode = 500 } = err;
+    if (!err.message) err.message = 'Ups... Coś poszło nie tak';
+    res.status(statusCode).render('error', { err });
 });
 
 app.listen(3000, () => {
