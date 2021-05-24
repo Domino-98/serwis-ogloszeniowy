@@ -1,5 +1,9 @@
 .categories {
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 75%;
 
     &__link {
         text-decoration: none;
@@ -20,6 +24,7 @@
 
     &__item {
         margin: 2.5rem 3rem;
+        width: 8rem;
     }
 
     &__icon {
@@ -27,11 +32,17 @@
         padding-bottom: 1rem;
         color: #14213d;
         text-shadow: 0 0 5px rgba(0, 0, 0, .5);
+
+        &--free {
+            width: 6rem;
+            padding-bottom: 1rem;
+        }
     }
 
     &__text {
         margin-top: 1rem;
         font-size: 1.6rem;
+        text-align: center;
     }
 }
 
@@ -59,6 +70,12 @@
     &__image {
         width: 100%;
         border-radius: 1rem;
+    }
+
+    &__creation-date {
+        font-size: 1.2rem;
+        color: $color-grey-dark-1;
+        margin-bottom: 1rem;
     }
 }
 
@@ -255,7 +272,7 @@
     }
 
     &__price {
-        font-size: 2.5rem;
+        font-size: 2rem;
         border-bottom: 1px solid $color-grey-dark-1;
         width: 100%;
 
@@ -266,7 +283,7 @@
 
     &__description {
         margin: 2rem 0;
-        font-size: 1.6rem;
+        font-size: 1.4rem;
     }
 
     &__buttons {

@@ -19,7 +19,11 @@ body {
   background-color: #edf2f4; }
 
 .categories {
-  display: flex; }
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 75%; }
   .categories__link {
     text-decoration: none;
     display: flex;
@@ -31,15 +35,20 @@ body {
     .categories__link:hover {
       transform: scale(1.15); }
   .categories__item {
-    margin: 2.5rem 3rem; }
+    margin: 2.5rem 3rem;
+    width: 8rem; }
   .categories__icon {
     font-size: 6rem;
     padding-bottom: 1rem;
     color: #14213d;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); }
+    .categories__icon--free {
+      width: 6rem;
+      padding-bottom: 1rem; }
   .categories__text {
     margin-top: 1rem;
-    font-size: 1.6rem; }
+    font-size: 1.6rem;
+    text-align: center; }
 
 .ad {
   margin: 2rem 2rem;
@@ -56,6 +65,10 @@ body {
   .ad__image {
     width: 100%;
     border-radius: 1rem; }
+  .ad__creation-date {
+    font-size: 1.2rem;
+    color: #777777;
+    margin-bottom: 1rem; }
 
 .navbar {
   width: 100%;
@@ -199,14 +212,14 @@ body {
     border-bottom: 1px solid #777777;
     width: 100%; }
   .card__price {
-    font-size: 2.5rem;
+    font-size: 2rem;
     border-bottom: 1px solid #777777;
     width: 100%; }
     .card__price::placeholder {
       color: #e4e4e4; }
   .card__description {
     margin: 2rem 0;
-    font-size: 1.6rem; }
+    font-size: 1.4rem; }
   .card__buttons {
     display: flex;
     width: 100%;
@@ -267,11 +280,10 @@ body {
   flex-direction: column;
   align-items: center;
   margin: 15rem 0 7rem 0;
-  padding: 7rem 0;
+  padding: 5rem 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
 
 .main {
-  min-height: 100vh;
   width: 66%;
   display: flex;
   flex-wrap: wrap; }

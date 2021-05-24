@@ -4,7 +4,12 @@
 
         <div class="card__content">
             <div class="card__title">
-                <h2><%=ad.title%></h2>
+                <h2 class="heading-2"><%=ad.title%></h2>    
+                <%  
+                    const date = new Date(ad.updatedAt) 
+                    const updatedAt = date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate() + ' ' + date.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes();
+                %>
+               <p class="ad__creation-date">Utworzono <%=updatedAt%></p>
             </div>
 
             <div class="card__price">
