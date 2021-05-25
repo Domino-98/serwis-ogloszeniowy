@@ -7,6 +7,27 @@
             <label class="new-ad__label" for="title">Tytuł</label>
         </div>
         <div class="new-ad__group">
+            <select name="ad[category]" id="category" required class="new-ad__select">
+               <option value="" selected disabled>Wybierz kategorię</option>
+               <option value="Motoryzacja">Motoryzacja</option>
+               <option value="Elektronika">Elektronika</option>
+               <option value="Zwierzęta">Zwierzęta</option>
+               <option value="Rolnictwo">Rolnictwo</option>
+               <option value="Rozrywka i Rekreacja">Rozrywka i Rekreacja</option>
+               <option value="Dla dzieci">Dla dzieci</option>
+               <option value="Nieruchomości">Nieruchomości</option>
+               <option value="Usługi">Usługi</option>
+               <option value="Muzyka">Muzyka</option>
+               <option value="Praca">Praca</option>
+               <option value="Moda">Moda</option>
+               <option value="Dom i Ogród">Dom i Ogród</option>
+               <option value="Zdrowie i Uroda">Zdrowie i Uroda</option>
+               <option value="Siłownia i Fitness">Siłownia i Fitness</option>
+               <option value="Biżuteria">Biżuteria</option>
+               <option value="Oddam za darmo">Oddam za darmo</option>
+            </select>        
+        </div>
+        <div class="new-ad__group">
             <input class="new-ad__input" type="text" id="price" name="ad[price]" required value="<%=ad.price%>">
             <label class="new-ad__label" for="price">Cena</label>
         </div>
