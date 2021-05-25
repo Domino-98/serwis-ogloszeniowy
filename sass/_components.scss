@@ -187,10 +187,26 @@
     width: 100%;
     max-width: 50rem;
 
+    &__select {
+        font-family: inherit;
+        padding: 1rem 1rem 1rem 0.5rem;
+        border: none;
+        box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+        width: 100%;
+        border-radius: 1rem;
+        appearance: none;
+        margin-top: -1.5rem;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+        }
+    }
+
     &__group {
         position: relative;
-        margin-top: 2rem;
-        margin-bottom: 5rem;
+        margin-top: 1.5rem;
+        margin-bottom: 4rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -227,9 +243,10 @@
 
         &:focus~.new-ad__label,
         &:not(:focus):valid~.new-ad__label {
-            top: -3.5rem;
+            top: -3rem;
             left: -0.5rem;
             color: #000;
+            font-size: 1.4em;
         }
     }
 
@@ -346,4 +363,24 @@
     &__text {
         font-size: 1.6rem;
     }
+}
+
+.no-category-alert {
+    margin: 2rem auto;
+    font-size: 2.5rem;
+    color: $color-tertiary;
+}
+
+.heading-1 {
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #000;
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, .5);
+    word-spacing: 1.5rem;
+}
+
+.heading-2 {
+    font-size: 2.5rem;
+    color: #000;
 }

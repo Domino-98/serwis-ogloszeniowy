@@ -9,7 +9,8 @@ const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./utils/ExpressError');
 const { adSchema } = require('./schemas');
 const methodOverride = require('method-override');
-const Ad = require('./models/ads');
+const Ad = require('./models/ad');
+const Category = require('./models/category');
 
 
 mongoose.connect('mongodb://localhost:27017/serwis-ogloszeniowy', {
@@ -44,8 +45,15 @@ const validateAd = (req, res, next) => {
     }
 }
 
+
 app.get('/', (req, res) => {
     res.render('home');
+});
+
+app.get('/category/:name/ads', async(req,res) => {
+    const category = await Category.findOne({"name": req.params.name}).populate('ads');
+    console.log(category);
+    res.render('categories/show', { category });
 });
 
 app.get('/ads', async (req, res) => {
@@ -57,9 +65,15 @@ app.get('/ads/new', (req, res) => {
     res.render('ads/new');
 });
 
-app.post('/ads', validateAd, catchAsync(async (req, res, next) => {
+
+
+app.post('/ads',  validateAd, catchAsync(async (req, res, next) => {
     const ad = new Ad(req.body.ad);
+    const category = await Category.findOne({name: req.body.ad.category});
+    ad.category = category._id;
+    category.ads.push(ad);
     await ad.save();
+    await category.save();
     res.redirect(`/ads/${ad._id}`);
 }));
 
@@ -75,6 +89,9 @@ app.get('/ads/:id/edit', catchAsync(async (req,res) =>{
 
 app.put('/ads/:id', validateAd, catchAsync(async (req,res) => {
     const ad = await Ad.findByIdAndUpdate(req.params.id, { ...req.body.ad });
+    const category = await Category.findOne({name: req.body.ad.category});
+    ad.category = category._id;
+    category.ads.push(ad);
     res.redirect(`/ads/${ad._id}`);
 }));
 
