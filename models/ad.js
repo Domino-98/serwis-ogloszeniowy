@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Category = require('./category');
 const Schema = mongoose.Schema;
 
 const AdSchema = new Schema({
@@ -11,6 +12,14 @@ const AdSchema = new Schema({
     }
 }, {
     timestamps: true,
+});
+
+AdSchema.post('findOneAndDelete', async function (doc) {
+    if (doc) {
+        const category = await Category.findOne({'ads': mongoose.Types.ObjectId(doc._id)});
+        category.ads.pull({_id: mongoose.Types.ObjectId(doc._id)});
+        category.save();
+    }
 });
 
 module.exports = mongoose.model('Ad', AdSchema);
