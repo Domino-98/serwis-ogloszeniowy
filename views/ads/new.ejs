@@ -29,11 +29,19 @@
         </div>
         <div class="new-ad__group">
            <input class="new-ad__input" type="number" step="0.01" id="price" name="ad[price]" onkeypress="return isNumberKey(event)" required>
-           <label for="title" class="new-ad__label">Cena</label>
+           <label for="price" class="new-ad__label">Cena</label>
         </div>
-        <div class="new-ad__group u-margin-bottom-big">
+        <div class="new-ad__group">
            <textarea class="new-ad__input"  id="description" name="ad[description]" rows="4" required></textarea>
-           <label for="title" class="new-ad__label">Opis</label>
+           <label for="description" class="new-ad__label">Opis</label>
+        </div>
+        <div class="new-ad__group">            
+           <input class="new-ad__input" type="text" id="contactNumber" name="ad[contactNumber]" required>
+           <label for="contactNumber" class="new-ad__label">Numer kontaktowy</label>
+        </div>
+        <div class="new-ad__group u-margin-bottom-big">            
+           <input class="new-ad__input" type="text" id="location" name="ad[location]" required>
+           <label for="location" class="new-ad__label">Miejscowość</label>
         </div>
         <button class="btn" id="addBtn">Dodaj ogłoszenie</button>
     </form>

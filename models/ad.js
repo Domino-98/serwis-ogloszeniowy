@@ -6,6 +6,8 @@ const AdSchema = new Schema({
     title: String,
     price: Number,
     description: String,
+    contactNumber: Number,
+    location: String,
     category:  {
         type: Schema.Types.ObjectId,
         ref: "Category"

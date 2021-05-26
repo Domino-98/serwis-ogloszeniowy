@@ -111,9 +111,17 @@
             <input class="new-ad__input" type="text" id="price" name="ad[price]" onkeypress="return isNumberKey(event)" required value="<%=ad.price%>">
             <label class="new-ad__label" for="price">Cena</label>
         </div>
-        <div class="new-ad__group u-margin-bottom-big">
+        <div class="new-ad__group">
             <textarea class="new-ad__input"  id="description" name="ad[description]" rows="4" required><%=ad.description%></textarea>
             <label class="new-ad__label" for="description">Opis</label>
+        </div>
+        <div class="new-ad__group">            
+            <input class="new-ad__input" type="text" id="contactNumber" name="ad[contactNumber]" value="<%=ad.contactNumber%>" required>
+            <label for="contactNumber" class="new-ad__label">Numer kontaktowy</label>
+        </div>
+        <div class="new-ad__group u-margin-bottom-big">            
+            <input class="new-ad__input" type="text" id="location" name="ad[location]" value="<%=ad.location%>" required>
+            <label for="location" class="new-ad__label">Miejscowość</label>
         </div>
         <button class="btn">Edytuj</button>
     </form>

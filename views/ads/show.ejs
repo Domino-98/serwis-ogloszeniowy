@@ -3,18 +3,29 @@
         <img src="https://images.unsplash.com/photo-1619441207978-3d326c46e2c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80" alt="Image" class="card__image">
 
         <div class="card__content">
-            <div class="card__title">
-                <h2 class="heading-2"><%=ad.title%></h2>    
-                <%  
-                    const date = new Date(ad.updatedAt) 
-                    const updatedAt = date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate() + ' ' + date.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes();
-                %>
-               <p class="ad__creation-date">Utworzono <%=updatedAt%></p>
+            <div class="card__wrapper">
+                <div class="card__title">
+                    <h2 class="heading-2"><%=ad.title%></h2>    
+                    <%  
+                        const date = new Date(ad.updatedAt) 
+                        const updatedAt = date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate() + ' ' + date.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes();
+                    %>
+                   <p class="ad__creation-date">Utworzono <%=updatedAt%></p>
+                </div>
+    
+                <div class="card__price">
+                    <span>Cena: <%=ad.price%> zł</span>
+                </div>
+
+                <div class="card__contact-number">
+                    <span>Numer kontaktowy: <%=ad.contactNumber%></span>
+                </div>
+
+                <div class="card__location">
+                    <span>Miejscowość: <%=ad.location%></span>
+                </div>
             </div>
 
-            <div class="card__price">
-                <span>Cena: <%=ad.price%> zł</span>
-            </div>
 
             <div class="card__description">
                 <p><%=ad.description%></p>
