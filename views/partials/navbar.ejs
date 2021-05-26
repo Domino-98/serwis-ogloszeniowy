@@ -1,8 +1,9 @@
 <nav class="navbar">
     <a class="navbar__logo-text" href="/ads">ADBOX</a>
 
-    <form class="navbar__search" action="">
-        <input class="navbar__search-input" type="text" id="searchInput" placeholder="Wyszukaj ogłoszenie">
+    <form class="navbar__search" action="/ads/<%='#ads'%>" method="GET">
+        <input class="navbar__search-input" type="text" id="searchInput" placeholder="Wyszukaj ogłoszenie"
+            name="search">
         <button class="navbar__search-button"><i class="fas fa-search"></i></button>
     </form>
 

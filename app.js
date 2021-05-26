@@ -52,20 +52,37 @@ app.get('/', (req, res) => {
 
 app.get('/category/:name/ads', async(req,res) => {
     const category = await Category.findOne({"name": req.params.name}).populate('ads');
-    console.log(category);
     res.render('categories/show', { category });
 });
 
 app.get('/ads', async (req, res) => {
-    const ads = await Ad.find({});
-    res.render('ads/index', { ads });
+    const searchQuery = req.query.search;
+    if (req.query.search) {
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        const ads = await Ad.find({title: regex});
+        const adsCount = await Ad.count({title: regex});
+        let resultText;
+        if (adsCount == 1)
+            resultText = "ogłoszenie";
+         else if (adsCount >= 2 && adsCount <= 4 )
+            resultText = "ogłoszenia";
+         else if (adsCount > 5 || adsCount == 0)
+            resultText = "ogłoszeń";
+            
+        res.render('ads/index', { ads, searchQuery, adsCount, resultText});
+    } else {
+        const ads = await Ad.find({});
+        res.render('ads/index', { ads, searchQuery });
+    }
 });
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 app.get('/ads/new', (req, res) => {
     res.render('ads/new');
 });
-
-
 
 app.post('/ads',  validateAd, catchAsync(async (req, res, next) => {
     const ad = new Ad(req.body.ad);
@@ -89,9 +106,6 @@ app.get('/ads/:id/edit', catchAsync(async (req,res) =>{
 
 app.put('/ads/:id', validateAd, catchAsync(async (req,res) => {
     const ad = await Ad.findByIdAndUpdate(req.params.id, { ...req.body.ad });
-    const category = await Category.findOne({name: req.body.ad.category});
-    ad.category = category._id;
-    category.ads.push(ad);
     res.redirect(`/ads/${ad._id}`);
 }));
 
