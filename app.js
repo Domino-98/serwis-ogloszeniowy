@@ -68,7 +68,7 @@ app.get('/ads', async (req, res) => {
             resultText = "ogłoszenia";
          else if (adsCount > 5 || adsCount == 0)
             resultText = "ogłoszeń";
-            
+
         res.render('ads/index', { ads, searchQuery, adsCount, resultText});
     } else {
         const ads = await Ad.find({});
@@ -100,12 +100,23 @@ app.get('/ads/:id', catchAsync(async (req,res) => {
 }));
 
 app.get('/ads/:id/edit', catchAsync(async (req,res) =>{
-    const ad = await Ad.findById(req.params.id);
+    const ad = await Ad.findById(req.params.id).populate('category');
     res.render(`ads/edit`, { ad });
 }));
 
 app.put('/ads/:id', validateAd, catchAsync(async (req,res) => {
-    const ad = await Ad.findByIdAndUpdate(req.params.id, { ...req.body.ad });
+    const adOld = await Ad.findById(req.params.id);
+    const category = await Category.findOne({_id: adOld.category});
+    category.ads.pull({_id: adOld._id});
+    category.save();
+
+    const categoryNew = await Category.findOne({name: req.body.ad.category});
+    console.log(categoryNew);
+    const ad = await Ad.findByIdAndUpdate(req.params.id, { title: req.body.ad.title, price: req.body.ad.price, category: categoryNew._id, description: req.body.ad.description});
+
+    categoryNew.ads.push(ad);
+    categoryNew.save();
+    
     res.redirect(`/ads/${ad._id}`);
 }));
 

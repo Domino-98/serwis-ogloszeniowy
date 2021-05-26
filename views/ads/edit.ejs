@@ -9,26 +9,106 @@
         <div class="new-ad__group">
             <select name="ad[category]" id="category" required class="new-ad__select">
                <option value="" selected disabled>Wybierz kategorię</option>
-               <option value="Motoryzacja">Motoryzacja</option>
-               <option value="Elektronika">Elektronika</option>
-               <option value="Zwierzęta">Zwierzęta</option>
-               <option value="Rolnictwo">Rolnictwo</option>
-               <option value="Rozrywka i Rekreacja">Rozrywka i Rekreacja</option>
-               <option value="Dla dzieci">Dla dzieci</option>
-               <option value="Nieruchomości">Nieruchomości</option>
-               <option value="Usługi">Usługi</option>
-               <option value="Muzyka">Muzyka</option>
-               <option value="Praca">Praca</option>
-               <option value="Moda">Moda</option>
-               <option value="Dom i Ogród">Dom i Ogród</option>
-               <option value="Zdrowie i Uroda">Zdrowie i Uroda</option>
-               <option value="Siłownia i Fitness">Siłownia i Fitness</option>
-               <option value="Biżuteria">Biżuteria</option>
-               <option value="Oddam za darmo">Oddam za darmo</option>
+               <option value="Motoryzacja" 
+               <% if (ad.category.name == "Motoryzacja") { %>
+                selected
+               <% } else {%>
+                ''
+                <% } %>>Motoryzacja</option>
+               <option value="Elektronika" 
+               <% if (ad.category.name == "Elektronika") { %>
+                selected
+               <% } else {%>
+                ''
+                <% } %>>Elektronika</option>
+               <option value="Zwierzęta" 
+               <% if (ad.category.name == "Zwierzęta") { %>
+                selected
+               <% } else {%>
+                ''
+                <% } %>>Zwierzęta</option>
+               <option value="Rolnictwo"
+               <% if (ad.category.name == "Rolnictwo") { %>
+                selected
+               <% } else {%>
+                ''
+                <% } %>>Rolnictwo</option>
+               <option value="Rozrywka i Rekreacja"
+               <% if (ad.category.name == "Rozrywka i Rekreacja") { %>
+                selected
+               <% } else {%>
+                ''
+                <% } %>>Rozrywka i Rekreacja</option>
+               <option value="Dla dzieci"
+               <% if (ad.category.name == "Dla dzieci") { %>
+                selected
+               <% } else {%>
+                ''
+                <% } %>>Dla dzieci</option>
+               <option value="Nieruchomości"
+               <% if (ad.category.name == "Nieruchomości") { %>
+                selected
+               <% } else {%>
+                ''
+                <% } %>>Nieruchomości</option>
+               <option value="Usługi"
+               <% if (ad.category.name == "Usługi") { %>
+                selected
+               <% } else {%>
+                ''
+                <% } %>>Usługi</option>
+               <option value="Muzyka"
+               <% if (ad.category.name == "Muzyka") { %>
+                selected
+               <% } else {%>
+                ''
+                <% } %>>Muzyka</option>
+               <option value="Praca"
+               <% if (ad.category.name == "Praca") { %>
+                selected
+               <% } else {%>
+                ''
+                <% } %>>Praca</option>
+               <option value="Moda"
+               <% if (ad.category.name == "Moda") { %>
+                selected
+               <% } else {%>
+                ''
+                <% } %>>Moda</option>
+               <option value="Dom i Ogród"
+               <% if (ad.category.name == "Dom i Ogród") { %>
+                selected
+               <% } else {%>
+                ''
+                <% } %>>Dom i Ogród</option>
+               <option value="Zdrowie i Uroda"
+               <% if (ad.category.name == "Zdrowie i Uroda") { %>
+                selected
+               <% } else {%>
+                ''
+                <% } %>>Zdrowie i Uroda</option>
+               <option value="Siłownia i Fitness"
+               <% if (ad.category.name == "Siłownia i Fitness") { %>
+                selected
+               <% } else {%>
+                ''
+                <% } %>>Siłownia i Fitness</option>
+               <option value="Biżuteria"
+               <% if (ad.category.name == "Biżuteria") { %>
+                selected
+               <% } else {%>
+                ''
+                <% } %>>Biżuteria</option>
+               <option value="Oddam za darmo"
+               <% if (ad.category.name == "Oddam za darmo") { %>
+                selected
+               <% } else {%>
+                ''
+                <% } %>">Oddam za darmo</option>
             </select>        
         </div>
         <div class="new-ad__group">
-            <input class="new-ad__input" type="text" id="price" name="ad[price]" required value="<%=ad.price%>">
+            <input class="new-ad__input" type="text" id="price" name="ad[price]" onkeypress="return isNumberKey(event)" required value="<%=ad.price%>">
             <label class="new-ad__label" for="price">Cena</label>
         </div>
         <div class="new-ad__group u-margin-bottom-big">
@@ -38,3 +118,14 @@
         <button class="btn">Edytuj</button>
     </form>
 </div>
+
+<script>
+    function isNumberKey(evt) {
+        var charCode=(evt.which)? evt.which:evt.keyCode;
+        if (charCode!=46&&charCode>31
+            &&(charCode<48||charCode>57))
+            return false;
+
+        return true;
+    }
+</script>
