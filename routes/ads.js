@@ -6,6 +6,7 @@ const ExpressError = require('../utils/ExpressError');
 const Ad = require('../models/ad');
 const Category = require('../models/category');
 
+
 const validateAd = (req, res, next) => {
     const result = adSchema.validate(req.body);
     if (result.error) {
@@ -18,10 +19,12 @@ const validateAd = (req, res, next) => {
 
 
 router.get('/', async (req, res) => {
+    const limit = parseInt(req.query.limit) || 9;
+    const page = parseInt(req.query.page) || 1;
     const searchQuery = req.query.search;
     if (req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-        const ads = await Ad.find({title: regex});
+        const ads = await Ad.paginate({title: regex}, {limit: limit, page: page});
         const adsCount = await Ad.count({title: regex});
         let resultText;
         if (adsCount == 1)
@@ -30,10 +33,9 @@ router.get('/', async (req, res) => {
             resultText = "ogłoszenia";
          else if (adsCount >= 5 || adsCount == 0)
             resultText = "ogłoszeń";
-
         res.render('ads/index', { ads, searchQuery, adsCount, resultText});
     } else {
-        const ads = await Ad.find({});
+        const ads = await Ad.paginate({}, {limit: limit, page: page});
         res.render('ads/index', { ads, searchQuery });
     }
 });

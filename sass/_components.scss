@@ -494,3 +494,38 @@
         visibility: hidden;
     }
 }
+
+
+.pagination {
+    display: flex;
+    margin-top: 5rem;
+    transition: background-color .3s;
+
+    &__btn {
+        font-size: 2rem;
+        padding: .8rem 1.6rem;
+        text-decoration: none;
+        color: black;
+        background-color: #dbdbdb;
+        box-shadow: 0 0 3px rgba(0, 0, 0, .7);
+
+        &.previous {
+            border-top-left-radius: 2rem;
+            border-bottom-left-radius: 2rem;
+        }
+
+        &.next {
+            border-top-right-radius: 2rem;
+            border-bottom-right-radius: 2rem;
+        }
+
+        &.active {
+            background-color: $color-secondary;
+            color: white;
+        }
+
+        &:hover:not(.active) {
+            background-color: $color-grey-light-1;
+        }
+    }
+}

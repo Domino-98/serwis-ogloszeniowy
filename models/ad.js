@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 const Category = require('./category');
 const Schema = mongoose.Schema;
 
@@ -15,6 +16,8 @@ const AdSchema = new Schema({
 }, {
     timestamps: true,
 });
+
+AdSchema.plugin(mongoosePaginate);
 
 AdSchema.post('findOneAndDelete', async function (doc) {
     if (doc) {

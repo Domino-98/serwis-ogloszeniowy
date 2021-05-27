@@ -130,11 +130,11 @@
 
     <main class="main u-margin-top">
 
-        <% if (ads.length == 0) { %>
+        <% if (ads.docs.length == 0) { %>
             <p class="no-category-alert">Brak ogłoszeń</p>
         <% } %>
 
-        <% ads.forEach(ad => { %>
+        <% ads.docs.forEach(ad => { %>
         <section class="ad">
             <a href="../ads/<%=ad._id%>">      
                 <img src="https://images.unsplash.com/photo-1619441207978-3d326c46e2c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80" alt="Image" class="ad__image">
@@ -147,7 +147,7 @@
 
             <%  
                 const date = new Date(ad.updatedAt) 
-                const updatedAt = date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate() + ' ' + date.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes();
+                const updatedAt = date.getFullYear()+'-' + (date.getMonth()<10?'0':'') + (date.getMonth()+1) + '-'+date.getDate() + ' ' + date.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes();
             %>
             <p class="ad__creation-date">Utworzono <%=updatedAt%></p>
 
@@ -158,4 +158,17 @@
 
         </section>
         <% }); %>
+
+
     </main>
+
+
+    <div class="pagination">
+        <% if (!(ads.hasPrevPage)) { ads.prevPage = 1 } %><a  class="pagination__btn previous" href="/ads/?page=<%=ads.prevPage%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads">&laquo;</a>
+        <% if (ads.page == 1) { %>  <% } else { %><a class="pagination__btn" href="/ads/?page=1<% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads">1</a><% } %>
+        <% if (!(ads.hasPrevPage) || ads.prevPage == 1) {  %>  <% } else { %><a  class="pagination__btn" href="/ads/?page=<%=ads.prevPage%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><%=ads.prevPage%></a><% } %>
+        <a  class="pagination__btn active" href="/ads/?page=<%=ads.page%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><%=ads.page%></a>
+        <% if (!(ads.hasNextPage) || ads.nextPage == ads.totalPages) {  %>  <% } else { %><a  class="pagination__btn" href="/ads/?page=<%=ads.nextPage%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><%=ads.nextPage%></a><% } %>
+        <% if (ads.page == ads.totalPages) { %>  <% } else { %> <a  class="pagination__btn" href="/ads/?page=<%=ads.totalPages%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><%=ads.totalPages%></a><% } %>
+        <% if (!(ads.hasNextPage)) { ads.nextPage = ads.totalPages } %> <a  class="pagination__btn next" href="/ads/?page=<%=ads.nextPage%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads">&raquo;</a>
+    </div> 

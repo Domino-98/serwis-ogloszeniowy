@@ -369,6 +369,29 @@ body {
     opacity: 0;
     visibility: hidden; } }
 
+.pagination {
+  display: flex;
+  margin-top: 5rem;
+  transition: background-color .3s; }
+  .pagination__btn {
+    font-size: 2rem;
+    padding: .8rem 1.6rem;
+    text-decoration: none;
+    color: black;
+    background-color: #dbdbdb;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.7); }
+    .pagination__btn.previous {
+      border-top-left-radius: 2rem;
+      border-bottom-left-radius: 2rem; }
+    .pagination__btn.next {
+      border-top-right-radius: 2rem;
+      border-bottom-right-radius: 2rem; }
+    .pagination__btn.active {
+      background-color: #ef233c;
+      color: white; }
+    .pagination__btn:hover:not(.active) {
+      background-color: #e4e4e4; }
+
 .container {
   display: flex;
   align-items: center;
