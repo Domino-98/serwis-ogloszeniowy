@@ -16,6 +16,7 @@ const validateAd = (req, res, next) => {
     }
 }
 
+
 router.get('/', async (req, res) => {
     const searchQuery = req.query.search;
     if (req.query.search) {
@@ -27,7 +28,7 @@ router.get('/', async (req, res) => {
             resultText = "ogłoszenie";
          else if (adsCount >= 2 && adsCount <= 4 )
             resultText = "ogłoszenia";
-         else if (adsCount > 5 || adsCount == 0)
+         else if (adsCount >= 5 || adsCount == 0)
             resultText = "ogłoszeń";
 
         res.render('ads/index', { ads, searchQuery, adsCount, resultText});
@@ -52,16 +53,25 @@ router.post('/',  validateAd, catchAsync(async (req, res, next) => {
     category.ads.push(ad);
     await ad.save();
     await category.save();
+    req.flash('success', 'Pomyślnie utworzono nowe ogłoszenie!')
     res.redirect(`/ads/${ad._id}`);
 }));
 
 router.get('/:id', catchAsync(async (req,res) => {
     const ad = await Ad.findById(req.params.id);
+    if (!ad) {
+        req.flash('error', 'Nie można znaleźć ogłoszenia o podanym id');
+        return res.redirect('/ads');
+    }
     res.render('ads/show', { ad });
 }));
 
 router.get('/:id/edit', catchAsync(async (req,res) =>{
     const ad = await Ad.findById(req.params.id).populate('category');
+    if (!ad) {
+        req.flash('error', 'Nie można znaleźć ogłoszenia o podanym id');
+        return res.redirect('/ads');
+    }
     res.render(`ads/edit`, { ad });
 }));
 
@@ -76,12 +86,14 @@ router.put('/:id', validateAd, catchAsync(async (req,res) => {
 
     categoryNew.ads.push(ad);
     categoryNew.save();
-    
+
+    req.flash('success', 'Pomyślnie zaktualizowano ogłoszenie!')
     res.redirect(`/ads/${ad._id}`);
 }));
 
 router.delete('/:id', catchAsync(async (req, res) => {
     await Ad.findByIdAndDelete(req.params.id);
+    req.flash('success', 'Pomyślnie usunięto ogłoszenie!')
     res.redirect('/ads');
 }));
 

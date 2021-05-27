@@ -1,0 +1,17 @@
+<% if (success && success.length) { %>
+<div class="flash fade-out">
+    <p class="flash__message success">
+        <%=success%> <span class="flash__message-dismiss">&times;</span>
+    </p>
+</div>
+<% } %>
+
+<% if (error && error.length) { %>
+    <div class="flash fade-out">
+        <p class="flash__message danger">
+            <%=error%> <span class="flash__message-dismiss">&times;</span>
+        </p>
+    </div>
+<% } %>
+
+<script src="../../public/js/flash.js"></script>
