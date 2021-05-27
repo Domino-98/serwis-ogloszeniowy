@@ -36,7 +36,7 @@
            <label for="description" class="new-ad__label">Opis</label>
         </div>
         <div class="new-ad__group">            
-           <input class="new-ad__input" type="text" id="contactNumber" name="ad[contactNumber]" required>
+           <input class="new-ad__input" type="number" id="contactNumber" name="ad[contactNumber]" onkeypress="return isNumberKey(event)" required>
            <label for="contactNumber" class="new-ad__label">Numer kontaktowy</label>
         </div>
         <div class="new-ad__group u-margin-bottom-big">            

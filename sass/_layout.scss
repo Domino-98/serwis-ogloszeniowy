@@ -28,7 +28,6 @@
     align-items: center;
     background-color: $color-primary-dark;
 
-
     &__logo {
         font-family: Audiowide, Arial, Helvetica, sans-serif;
         color: $color-grey-light-1;
@@ -44,12 +43,20 @@
     &__list {
         margin: 5rem 10rem;
         list-style-type: none;
+    }
 
+    &__item {
+        padding: .25rem 0;
     }
 
     &__link {
         text-decoration: none;
         color: $color-grey-light-1;
+        transition: color .2s;
+
+        &:hover {
+            color: #fff;
+        }
     }
 
     &__social {
@@ -70,6 +77,11 @@
         color: $color-grey-light-1;
         margin: 1rem;
         font-size: 5rem;
+        transition: color .2s;
+
+        &:hover {
+            color: #fff;
+        }
     }
 
     &__social-text {

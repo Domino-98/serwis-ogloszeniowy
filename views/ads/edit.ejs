@@ -116,7 +116,7 @@
             <label class="new-ad__label" for="description">Opis</label>
         </div>
         <div class="new-ad__group">            
-            <input class="new-ad__input" type="text" id="contactNumber" name="ad[contactNumber]" value="<%=ad.contactNumber%>" required>
+            <input class="new-ad__input" type="text" id="contactNumber" name="ad[contactNumber]" onkeypress="return isNumberKey(event)" value="<%=ad.contactNumber%>" required>
             <label for="contactNumber" class="new-ad__label">Numer kontaktowy</label>
         </div>
         <div class="new-ad__group u-margin-bottom-big">            

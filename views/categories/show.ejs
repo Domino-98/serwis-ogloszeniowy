@@ -6,7 +6,7 @@
 <main class="main u-margin-top">
 
     <% if (category.ads.length == 0) { %>
-        <p class="no-category-alert">Brak ogłoszeń z tej kategorii</p>
+        <p class="no-category-alert">Brak ogłoszeń w tej kategorii</p>
     <% } %>
 
     <% category.ads.forEach(ad => { %>
@@ -28,7 +28,10 @@
         %>
         <p class="ad__creation-date">Utworzono <%=updatedAt%></p>
 
-        <span class="ad__price"><%=ad.price%> zł</span>
+        <div class="ad__price-observe">
+            <span class="ad__price"><%=ad.price%> zł</span>
+            <a class="ad__observe-icon" id="observeAd"><i title="Dodaj do obserwowanych" class="far fa-star"></i></a>
+        </div>
 
     </section>
     <% }); %>
