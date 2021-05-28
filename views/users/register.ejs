@@ -1,0 +1,39 @@
+<% layout('layouts/boilerplate') %>
+<div class="user">
+    <h1 class="heading-1 u-margin-bottom u-center-text">Zarejestruj się</h1>
+    <form class="user__form" action="/register" method="POST">
+        <div class="user__group">
+            <input class="user__input" type="text" id="username" name="username" autofocus required>
+            <label for="username" class="user__label">Nazwa użytkownika</label>
+        </div>
+        <div class="user__group">
+            <input class="user__input" type="email" id="email" name="email" autofocus required>
+            <label for="email" class="user__label">Email</label>
+        </div>
+        <div class="user__group">
+            <input class="user__input" type="password" id="password" name="password" autofocus required>
+            <label for="password" class="user__label">Hasło</label>
+        </div>
+        <div class="user__group">
+            <input class="user__input" type="password" id="confirmPassword" required>
+            <label for="confirmPassword" class="user__label">Powtórz hasło</label>
+        </div>
+        <button type="submit">Zarejestruj się</button>
+    </form>
+</div>
+
+<script>
+    var password=document.getElementById("password")
+        , confirm_password=document.getElementById("confirmPassword");
+
+    function validatePassword() {
+        if (password.value!=confirm_password.value) {
+            confirm_password.setCustomValidity("Hasła do siebie nie pasują");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange=validatePassword;
+    confirm_password.onkeyup=validatePassword;
+</script>

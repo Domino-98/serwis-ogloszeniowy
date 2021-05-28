@@ -1,0 +1,15 @@
+<% layout('layouts/boilerplate') %>
+<div class="user">
+    <h1 class="heading-1 u-margin-bottom u-center-text">Zaloguj się</h1>
+    <form class="user__form" action="/login" method="POST">
+        <div class="user__group">
+            <input class="user__input" type="email" id="email" name="email" autofocus required>
+            <label for="email" class="user__label">Email</label>
+        </div>
+        <div class="user__group">
+            <input class="user__input" type="password" id="password" name="password" autofocus required>
+            <label for="password" class="user__label">Hasło</label>
+        </div>
+        <button type="submit">Zaloguj się</button>
+    </form>
+</div>
