@@ -16,7 +16,7 @@ body {
   font-family: Roboto, Arial, Helvetica, sans-serif;
   font-weight: 400;
   line-height: 1.6;
-  background-color: #edf2f4; }
+  background-color: #f5f5f5; }
 
 .categories {
   display: flex;
@@ -371,24 +371,36 @@ body {
 
 .pagination {
   display: flex;
+  align-items: center;
   margin-top: 5rem;
-  transition: background-color .3s; }
+  padding: 1.25rem 2.5rem;
+  background-color: #eee;
+  border-radius: 3rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); }
   .pagination__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 2rem;
+    width: 4.5rem;
+    height: 4.5rem;
     padding: .8rem 1.6rem;
+    border-radius: 50%;
+    margin: 0 5px;
     text-decoration: none;
-    color: black;
-    background-color: #dbdbdb;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.7); }
-    .pagination__btn.previous {
-      border-top-left-radius: 2rem;
-      border-bottom-left-radius: 2rem; }
-    .pagination__btn.next {
-      border-top-right-radius: 2rem;
-      border-bottom-right-radius: 2rem; }
+    color: #ef233c;
+    background-color: #fff;
+    box-shadow: 2px 2px 10px rgba(255, 51, 51, 0.9);
+    transition: background-color .3s; }
+    .pagination__btn.previous, .pagination__btn.next {
+      width: 3.5rem;
+      height: 3.5rem; }
+      .pagination__btn.previous i, .pagination__btn.next i {
+        font-size: 1.6rem; }
     .pagination__btn.active {
       background-color: #ef233c;
-      color: white; }
+      color: white;
+      box-shadow: none; }
     .pagination__btn:hover:not(.active) {
       background-color: #e4e4e4; }
 
