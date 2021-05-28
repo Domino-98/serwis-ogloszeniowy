@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const catchAsync = require('../utils/catchAsync');
 const { adSchema } = require('../schemas');
+const { isLoggedIn } = require('../middleware');
 const ExpressError = require('../utils/ExpressError');
 const Ad = require('../models/ad');
 const Category = require('../models/category');
@@ -44,11 +45,11 @@ function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
 
-router.get('/new', (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
     res.render('ads/new');
 });
 
-router.post('/',  validateAd, catchAsync(async (req, res, next) => {
+router.post('/',  isLoggedIn, validateAd, catchAsync(async (req, res, next) => {
     const ad = new Ad(req.body.ad);
     const category = await Category.findOne({name: req.body.ad.category});
     ad.category = category._id;
@@ -68,7 +69,7 @@ router.get('/:id', catchAsync(async (req,res) => {
     res.render('ads/show', { ad });
 }));
 
-router.get('/:id/edit', catchAsync(async (req,res) =>{
+router.get('/:id/edit', isLoggedIn, catchAsync(async (req,res) =>{
     const ad = await Ad.findById(req.params.id).populate('category');
     if (!ad) {
         req.flash('error', 'Nie można znaleźć ogłoszenia o podanym id');
@@ -77,7 +78,7 @@ router.get('/:id/edit', catchAsync(async (req,res) =>{
     res.render(`ads/edit`, { ad });
 }));
 
-router.put('/:id', validateAd, catchAsync(async (req,res) => {
+router.put('/:id', isLoggedIn, validateAd, catchAsync(async (req,res) => {
     const adOld = await Ad.findById(req.params.id);
     const category = await Category.findOne({_id: adOld.category});
     category.ads.pull({_id: adOld._id});
@@ -93,7 +94,7 @@ router.put('/:id', validateAd, catchAsync(async (req,res) => {
     res.redirect(`/ads/${ad._id}`);
 }));
 
-router.delete('/:id', catchAsync(async (req, res) => {
+router.delete('/:id', isLoggedIn, catchAsync(async (req, res) => {
     await Ad.findByIdAndDelete(req.params.id);
     req.flash('success', 'Pomyślnie usunięto ogłoszenie!')
     res.redirect('/ads');

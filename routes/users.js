@@ -9,14 +9,23 @@ router.get('/register', (req, res) => {
 });
 
 router.post('/register', catchAsync(async (req, res) => {
+    const {email, username, password} = req.body;
     try {
-        const {email, username, password} = req.body;
         const user = new User({email, username, password});
         const registeredUser = await User.register(user, password);
         req.flash('success', 'Witaj w serwisie ogłoszeniowym ADBOX!');
         res.redirect('/ads');
     } catch(e) {
-        req.flash('error', e.message);
+        let msg = '';
+        const foundUserEmail = await User.findOne({email: email});
+        const foundUserName = await User.findOne({username: username});
+        if (foundUserEmail) {
+            msg = 'Użytkownik o podanym mailu już istnieje';
+        }
+        if (foundUserName) {
+            msg = 'Użytkownik o podanej nazwie użytkownika już istnieje';
+        }
+        req.flash('error', msg);
         res.redirect('register');
     }
 }));
@@ -29,5 +38,13 @@ router.post('/login', passport.authenticate('local', {failureFlash: 'Niepoprawny
     req.flash('success', 'Witamy z powrotem!');
     res.redirect('/ads');
 }));
+
+
+router.get('/logout', (req, res) => {
+    req.logout();
+    req.flash('success', 'Zostałeś pomyślnie wylogowany');
+    res.redirect('/ads');
+});
+
 
 module.exports = router;
