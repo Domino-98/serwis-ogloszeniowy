@@ -1,24 +1,36 @@
 <% layout('layouts/boilerplate') %>
 <div class="user">
-    <h1 class="heading-1 u-margin-bottom u-center-text">Zarejestruj się</h1>
+    <div class="user__select">
+        <a class="user__select-login"href="/login">Logowanie</a>
+        <a class="user__select-register active" href="/register">Rejestracja</a>
+    </div>
+    <h1 class="heading-2 u-margin-top u-center-text">Zarejestruj się</h1>
     <form class="user__form" action="/register" method="POST">
         <div class="user__group">
-            <input class="user__input" type="text" id="username" name="username" autofocus required>
-            <label for="username" class="user__label">Nazwa użytkownika</label>
+            <input class="user__input" type="text" id="username" name="username" placeholder="Nazwa użytkownika" autofocus required>
+            <label class="user__icon" for="username">
+                <i class="fas fa-user"></i>
+            </label>
         </div>
         <div class="user__group">
-            <input class="user__input" type="email" id="email" name="email" autofocus required>
-            <label for="email" class="user__label">Email</label>
+            <input class="user__input" type="email" id="email" name="email" placeholder="Email" required>
+            <label class="user__icon" for="email">
+                <i class="fas fa-envelope"></i>
+            </label>
         </div>
         <div class="user__group">
-            <input class="user__input" type="password" id="password" name="password" autofocus required>
-            <label for="password" class="user__label">Hasło</label>
+            <input class="user__input" type="password" id="password" name="password" pattern=".{8,}" placeholder="Hasło" required>
+            <label class="user__icon" for="password">
+                <i class="fas fa-lock"></i>
+            </label>
         </div>
-        <div class="user__group">
-            <input class="user__input" type="password" id="confirmPassword" required>
-            <label for="confirmPassword" class="user__label">Powtórz hasło</label>
+        <div class="user__group u-margin-bottom">
+            <input class="user__input" type="password" id="confirmPassword" placeholder="Powtórz hasło" required>
+            <label class="user__icon" for="password">
+                <i class="fas fa-lock"></i>
+            </label>
         </div>
-        <button type="submit">Zarejestruj się</button>
+        <button class="btn btn--medium" type="submit">Zarejestruj się</button>
     </form>
 </div>
 
