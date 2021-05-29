@@ -33,9 +33,9 @@ body {
     .categories__link:link, .categories__link:visited {
       color: #000; }
     .categories__link:hover {
-      transform: scale(1.2); }
+      transform: scale(1.15); }
   .categories__item {
-    margin: 2.5rem 3rem;
+    margin: 2rem 3rem;
     width: 8rem; }
   .categories__icon {
     font-size: 5rem;
@@ -54,14 +54,17 @@ body {
   margin: 2rem 2rem;
   background-color: #fff;
   padding: 1rem;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
   width: calc(33% - 4rem);
   border-radius: 1rem;
   display: flex;
   flex-direction: column; }
-  .ad__title:link, .ad__title:visited {
-    text-decoration: none;
-    color: #000; }
+  .ad__title {
+    font-size: 2rem;
+    font-weight: 700; }
+    .ad__title:link, .ad__title:visited {
+      text-decoration: none;
+      color: #000; }
   .ad__price {
     font-size: 1.8rem; }
   .ad__price-observe {
@@ -214,7 +217,7 @@ body {
   background-color: #fff;
   padding: 3rem;
   margin-top: 16rem;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   border-radius: 1rem;
   width: 100%;
   max-width: 100rem;
@@ -275,7 +278,7 @@ body {
   padding: 1.5rem 3rem;
   background-color: #14213d;
   color: #e4e4e4;
-  border-radius: 1.5rem;
+  border-radius: 1rem;
   cursor: pointer;
   transition: all .2s;
   display: block;
@@ -322,24 +325,18 @@ body {
   color: #ef233c; }
 
 .heading-1 {
-  font-size: 3rem;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #000;
-  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+  font-size: 3rem;
+  letter-spacing: 1px;
   word-spacing: .5rem; }
 
 .heading-2 {
   font-size: 2.75rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #000;
-  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
   word-spacing: .5rem; }
 
 .heading-3 {
-  font-size: 2.5rem;
-  color: #000; }
+  font-size: 2.5rem; }
 
 .flash {
   position: fixed;
@@ -452,12 +449,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 0rem 2.5rem 0; }
+    padding: 0 0rem 2.5rem 0;
+    margin-top: 0.5rem; }
   .user__group {
     display: flex;
     position: relative;
     align-items: center;
-    margin: 2rem 0; }
+    margin: 1.5rem 0; }
   .user__icon {
     font-size: 1.5rem;
     z-index: 1;
@@ -494,7 +492,7 @@ body {
   min-height: 100vh; }
 
 .header {
-  background-color: #ffffff;
+  background-image: linear-gradient(180deg, #ffffff 0%, #ebebeb 74%);
   width: 100%;
   display: flex;
   flex-direction: column;

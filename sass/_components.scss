@@ -18,12 +18,12 @@
         }
 
         &:hover {
-            transform: scale(1.2);
+            transform: scale(1.15);
         }
     }
 
     &__item {
-        margin: 2.5rem 3rem;
+        margin: 2rem 3rem;
         width: 8rem;
     }
 
@@ -50,13 +50,16 @@
     margin: 2rem 2rem;
     background-color: #fff;
     padding: 1rem;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     width: calc(33% - 4rem);
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
 
+
     &__title {
+        font-size: 2rem;
+        font-weight: 700;
 
         &:link,
         &:visited {
@@ -278,7 +281,7 @@
     background-color: #fff;
     padding: 3rem;
     margin-top: 16rem;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
     border-radius: 1rem;
     width: 100%;
     max-width: 100rem;
@@ -364,7 +367,7 @@
     padding: 1.5rem 3rem;
     background-color: $color-primary-dark;
     color: $color-grey-light-1;
-    border-radius: 1.5rem;
+    border-radius: 1rem;
     cursor: pointer;
     transition: all .2s;
     display: block;
@@ -427,26 +430,20 @@
 }
 
 .heading-1 {
-    font-size: 3rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #000;
-    text-shadow: 0px 0px 3px rgba(0, 0, 0, .5);
+    font-size: 3rem;
+    letter-spacing: 1px;
     word-spacing: .5rem;
 }
 
 .heading-2 {
     font-size: 2.75rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #000;
-    text-shadow: 0px 0px 3px rgba(0, 0, 0, .5);
+    letter-spacing: 1px;
     word-spacing: .5rem;
 }
 
 .heading-3 {
     font-size: 2.5rem;
-    color: #000;
 }
 
 .flash {
@@ -606,13 +603,14 @@
         flex-direction: column;
         align-items: center;
         padding: 0 0rem 2.5rem 0;
+        margin-top: 0.5rem;
     }
 
     &__group {
         display: flex;
         position: relative;
         align-items: center;
-        margin: 2rem 0;
+        margin: 1.5rem 0;
     }
 
     &__icon {
