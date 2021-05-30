@@ -5,11 +5,15 @@ const { isLoggedIn, validateAd, isAuthor } = require('../middleware');
 const Ad = require('../models/ad');
 const Category = require('../models/category');
 
+let page = '';
+let searchQuery = '';
 
 router.get('/', async (req, res) => {
     const limit = parseInt(req.query.limit) || 9;
-    const page = parseInt(req.query.page) || 1;
-    const searchQuery = req.query.search;
+    page = parseInt(req.query.page) || 1;
+    searchQuery = req.query.search;
+    module.exports.page = page;
+    module.exports.searchQuery = searchQuery;
     if (req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
         const ads = await Ad.paginate({title: regex}, {limit: limit, page: page});
@@ -24,7 +28,7 @@ router.get('/', async (req, res) => {
         res.render('ads/index', { ads, searchQuery, adsCount, resultText});
     } else {
         const ads = await Ad.paginate({}, {limit: limit, page: page});
-        res.render('ads/index', { ads, searchQuery });
+        return res.render('ads/index', { ads, searchQuery });
     }
 });
 

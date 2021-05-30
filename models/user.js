@@ -12,7 +12,13 @@ const UserSchema = new Schema({
         type: String,
         required: true,
         unique: true
-    }
+    },
+    watchedAds: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Ad'
+            }
+        ]
 })
 
 UserSchema.plugin(passportLocalMongoose, {usernameField: 'email'});

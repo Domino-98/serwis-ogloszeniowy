@@ -4,7 +4,11 @@
 
         <div class="card__content">
             <div class="card__wrapper">
-                <a class="card__observe-icon" href="#" id="observeAd"><i title="Dodaj do obserwowanych" class="far fa-star"></i></a>
+                <% if (!currentUser) { %>
+                    <a class="card__observe-icon" href="/watched/<%=ad._id%>/add" id="observeAd"><i title="Dodaj do obserwowanych" class="far fa-star"></i></a>
+                <% } else if (currentUser._id.toString() != ad.author._id) { %>
+                    <a class="card__observe-icon" href="/watched/<%=ad._id%>/add" id="observeAd"><i title="Dodaj do obserwowanych" class="far fa-star"></i></a>
+                <% } %>
 
                 <div class="card__title">
                     <h3 class="heading-3"><%=ad.title%></h3>    
