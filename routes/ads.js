@@ -1,22 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const catchAsync = require('../utils/catchAsync');
-const { adSchema } = require('../schemas');
-const { isLoggedIn } = require('../middleware');
-const ExpressError = require('../utils/ExpressError');
+const { isLoggedIn, validateAd, isAuthor } = require('../middleware');
 const Ad = require('../models/ad');
 const Category = require('../models/category');
-
-
-const validateAd = (req, res, next) => {
-    const result = adSchema.validate(req.body);
-    if (result.error) {
-        const msg = result.error.details.map(el => el.message).join(',');
-        throw new ExpressError(msg, 400);
-    } else {
-        next();
-    }
-}
 
 
 router.get('/', async (req, res) => {
@@ -51,6 +38,7 @@ router.get('/new', isLoggedIn, (req, res) => {
 
 router.post('/',  isLoggedIn, validateAd, catchAsync(async (req, res, next) => {
     const ad = new Ad(req.body.ad);
+    ad.author = req.user._id;
     const category = await Category.findOne({name: req.body.ad.category});
     ad.category = category._id;
     category.ads.push(ad);
@@ -61,7 +49,7 @@ router.post('/',  isLoggedIn, validateAd, catchAsync(async (req, res, next) => {
 }));
 
 router.get('/:id', catchAsync(async (req,res) => {
-    const ad = await Ad.findById(req.params.id);
+    const ad = await Ad.findById(req.params.id).populate('author');
     if (!ad) {
         req.flash('error', 'Nie można znaleźć ogłoszenia o podanym id');
         return res.redirect('/ads');
@@ -69,32 +57,32 @@ router.get('/:id', catchAsync(async (req,res) => {
     res.render('ads/show', { ad });
 }));
 
-router.get('/:id/edit', isLoggedIn, catchAsync(async (req,res) =>{
+router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(async (req,res) =>{
     const ad = await Ad.findById(req.params.id).populate('category');
-    if (!ad) {
-        req.flash('error', 'Nie można znaleźć ogłoszenia o podanym id');
-        return res.redirect('/ads');
+    if (!ad.author.equals(req.user._id)) {
+        req.flash('error', 'Nie masz uprawnień do zaktualizowania tego ogłoszenia!');
+        return res.redirect(`/ads/${req.params.id}`);
     }
     res.render(`ads/edit`, { ad });
 }));
 
-router.put('/:id', isLoggedIn, validateAd, catchAsync(async (req,res) => {
-    const adOld = await Ad.findById(req.params.id);
-    const category = await Category.findOne({_id: adOld.category});
-    category.ads.pull({_id: adOld._id});
+router.put('/:id', isLoggedIn, isAuthor, validateAd, catchAsync(async (req,res) => {
+    const ad = await Ad.findById(req.params.id);
+    const category = await Category.findOne({_id: ad.category});
+    category.ads.pull({_id: ad._id});
     category.save();
-
     const categoryNew = await Category.findOne({name: req.body.ad.category});
-    const ad = await Ad.findByIdAndUpdate(req.params.id, { title: req.body.ad.title, price: req.body.ad.price, category: categoryNew._id, description: req.body.ad.description, contactNumber: req.body.ad.contactNumber, location: req.body.ad.location});
+    console.log(categoryNew);
+    const adNew = await Ad.findByIdAndUpdate(req.params.id, { title: req.body.ad.title, price: req.body.ad.price, category: categoryNew._id, description: req.body.ad.description, contactNumber: req.body.ad.contactNumber, location: req.body.ad.location});
 
-    categoryNew.ads.push(ad);
+    categoryNew.ads.push(adNew);
     categoryNew.save();
 
     req.flash('success', 'Pomyślnie zaktualizowano ogłoszenie!')
     res.redirect(`/ads/${ad._id}`);
 }));
 
-router.delete('/:id', isLoggedIn, catchAsync(async (req, res) => {
+router.delete('/:id', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
     await Ad.findByIdAndDelete(req.params.id);
     req.flash('success', 'Pomyślnie usunięto ogłoszenie!')
     res.redirect('/ads');

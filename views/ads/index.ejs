@@ -158,7 +158,7 @@
 
     </main>
 
-
+    <% if (ads.totalDocs > 9) { %>
     <div class="pagination">
         <% if (!(ads.hasPrevPage)) { ads.prevPage = 1 } %><a  class="pagination__btn previous" href="/ads/?page=<%=ads.prevPage%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><i class="fas fa-angle-left"></i></a>
         <% if (ads.page == 1) { %>  <% } else { %><a class="pagination__btn" href="/ads/?page=1<% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads">1</a><% } %>
@@ -167,4 +167,5 @@
         <% if (!(ads.hasNextPage) || ads.nextPage == ads.totalPages) {  %>  <% } else { %><a  class="pagination__btn" href="/ads/?page=<%=ads.nextPage%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><%=ads.nextPage%></a><% } %>
         <% if (ads.page == ads.totalPages) { %>  <% } else { %> <a  class="pagination__btn" href="/ads/?page=<%=ads.totalPages%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><%=ads.totalPages%></a><% } %>
         <% if (!(ads.hasNextPage)) { ads.nextPage = ads.totalPages } %> <a  class="pagination__btn next" href="/ads/?page=<%=ads.nextPage%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><i class="fas fa-angle-right"></i></a>
-    </div> 
+    </div>    
+    <% } %>

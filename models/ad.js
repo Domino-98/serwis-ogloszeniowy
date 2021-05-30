@@ -9,6 +9,10 @@ const AdSchema = new Schema({
     description: String,
     contactNumber: Number,
     location: String,
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     category:  {
         type: Schema.Types.ObjectId,
         ref: "Category"

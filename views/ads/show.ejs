@@ -12,6 +12,7 @@
                         const date = new Date(ad.updatedAt) 
                         const updatedAt = date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate() + ' ' + date.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes();
                     %>
+                   <p class="ad__author">Wystawiający: <%=ad.author.username%></p>
                    <p class="ad__creation-date">Utworzono <%=updatedAt%></p>
                 </div>
     
@@ -33,6 +34,7 @@
                 <p><%=ad.description%></p>
             </div>
 
+            <% if (currentUser && ad.author.equals(currentUser._id)) { %>
             <div class="card__buttons">
                 <div>              
                      <a class="btn btn--small" href="/ads/<%=ad._id%>/edit">Edytuj ogłoszenie</a>
@@ -43,6 +45,7 @@
                     </form>
                 </div>
             </div>
+            <% } %>
 
         </div>
     </div>
