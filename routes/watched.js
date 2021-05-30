@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const Ad = require('../models/ad');
 const User = require('../models/user');
 
-let currentPage = require('../routes/ads.js');
+let currentPage = require('../routes/ads');
+
 
 router.get('/', async(req, res) => {
     if (!req.user) {
@@ -18,15 +19,13 @@ router.get('/', async(req, res) => {
 });
 
 router.get('/:id/add', async(req, res) => {
+    const ad = await Ad.findOne({_id: req.params.id});
     if (!req.user) {
+        console.log(currentPage.editUrl);
         req.flash('error', 'Musisz być zalogowany aby móc dodać ogłoszenie do obserwowanych');
-        if (currentPage.searchQuery) {
-            return res.redirect(`/ads/?page=${currentPage.page}&search=${currentPage.searchQuery}#ads`);
-        }
-        return res.redirect(`/ads/?page=${currentPage.page}#ads`);
+        checkUrlAndRedirect();
     }
 
-    const ad = await Ad.findOne({_id: req.params.id});
     const loggedUser = await User.findOne({_id: req.user._id});
     const adToAdd = await User.findOne({_id: req.user._id, 'watchedAds': ad._id});
 
@@ -34,10 +33,21 @@ router.get('/:id/add', async(req, res) => {
         loggedUser.watchedAds.push(ad);
         await loggedUser.save();
         req.flash('success', 'Dodano ogłoszenie do obserwowanych');
-        return res.redirect(`/ads/${ad._id}`);
+        checkUrlAndRedirect();
     } else {
         req.flash('error', 'Te ogłoszenie jest już w twoich obserwowanych');
-        res.redirect(`/ads/${ad._id}`);
+        checkUrlAndRedirect();
+    }
+
+    function checkUrlAndRedirect() {
+        if (currentPage.url == `/ads/${ad._id}`) {
+            return res.redirect(`/ads/${ad._id}`);
+        } else {
+            if (currentPage.searchQuery) {
+                return res.redirect(`/ads/?page=${currentPage.page}&search=${currentPage.searchQuery}#ads`);
+            }
+            return res.redirect(`/ads/?page=${currentPage.page}#ads`);
+        }
     }
 });
 
@@ -55,5 +65,6 @@ router.get('/:id/remove', async(req, res) => {
     req.flash('success', 'Usunięto ogłoszenie z obserwowanych');
     res.redirect('/watched');
 });
+
 
 module.exports = router;

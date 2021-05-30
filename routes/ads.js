@@ -7,6 +7,7 @@ const Category = require('../models/category');
 
 let page = '';
 let searchQuery = '';
+let url = '';
 
 router.get('/', async (req, res) => {
     const limit = parseInt(req.query.limit) || 9;
@@ -14,6 +15,8 @@ router.get('/', async (req, res) => {
     searchQuery = req.query.search;
     module.exports.page = page;
     module.exports.searchQuery = searchQuery;
+    url = req.originalUrl;
+    module.exports.url = url;
     if (req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
         const ads = await Ad.paginate({title: regex}, {limit: limit, page: page});
@@ -53,6 +56,8 @@ router.post('/',  isLoggedIn, validateAd, catchAsync(async (req, res, next) => {
 }));
 
 router.get('/:id', catchAsync(async (req,res) => {
+    url = req.originalUrl;
+    module.exports.url = url;
     const ad = await Ad.findById(req.params.id).populate('author');
     if (!ad) {
         req.flash('error', 'Nie można znaleźć ogłoszenia o podanym id');
@@ -61,7 +66,7 @@ router.get('/:id', catchAsync(async (req,res) => {
     res.render('ads/show', { ad });
 }));
 
-router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(async (req,res) =>{
+router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(async (req,res) => {
     const ad = await Ad.findById(req.params.id).populate('category');
     if (!ad.author.equals(req.user._id)) {
         req.flash('error', 'Nie masz uprawnień do zaktualizowania tego ogłoszenia!');
