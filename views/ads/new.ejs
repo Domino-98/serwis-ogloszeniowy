@@ -3,7 +3,7 @@
     <h1 class="heading-1 u-margin-bottom u-center-text">Dodaj ogłoszenie</h1>
     <form class="new-ad__form" action="/ads" method="POST">
         <div class="new-ad__group">            
-           <input class="new-ad__input" type="text" id="title" name="ad[title]" autofocus required>
+           <input class="new-ad__input" type="text" id="title" name="ad[title]" maxlength="60" autofocus required>
            <label for="title" class="new-ad__label">Tytuł</label>
         </div>
         <div class="new-ad__group">
@@ -32,7 +32,7 @@
            <label for="price" class="new-ad__label">Cena</label>
         </div>
         <div class="new-ad__group">
-           <textarea class="new-ad__input"  id="description" name="ad[description]" rows="4" required></textarea>
+           <textarea class="new-ad__input"  id="description" name="ad[description]" maxlength="1000" rows="4" required></textarea>
            <label for="description" class="new-ad__label">Opis</label>
         </div>
         <div class="new-ad__group">            
@@ -40,7 +40,7 @@
            <label for="contactNumber" class="new-ad__label">Numer kontaktowy</label>
         </div>
         <div class="new-ad__group u-margin-bottom-big">            
-           <input class="new-ad__input" type="text" id="location" name="ad[location]" required>
+           <input class="new-ad__input" type="text" id="location" name="ad[location]" maxlength="40" required>
            <label for="location" class="new-ad__label">Miejscowość</label>
         </div>
         <button class="btn" id="addBtn" type="submit">Dodaj ogłoszenie</button>

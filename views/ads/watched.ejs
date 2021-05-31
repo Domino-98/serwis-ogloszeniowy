@@ -25,9 +25,9 @@
         <div class="ad__price-observe">
             <span class="ad__price"><%=ad.price%> zł</span>
             <% if (!currentUser) { %>
-                <a class="ad__observe-icon" href="/watched/<%=ad._id%>/remove" id="observeAd"><i title="Usuń z obserwowanych" class="far fa-star"></i></a>
+                <a class="ad__observe-icon to-remove" href="/watched/<%=ad._id%>/remove"><i title="Usuń z obserwowanych" class="far fa-star"></i></a>
             <% } else if (currentUser._id.toString() != ad.author._id) { %>
-                <a class="ad__observe-icon" href="/watched/<%=ad._id%>/remove" id="observeAd"><i title="Usuń z obserwowanych" class="far fa-star"></i></a>
+                <a class="ad__observe-icon to-remove" href="/watched/<%=ad._id%>/remove"><i title="Usuń z obserwowanych" class="far fa-star"></i></a>
             <% } %>
         </div>
     </section>
