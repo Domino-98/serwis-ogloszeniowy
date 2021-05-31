@@ -9,6 +9,14 @@ let page = '';
 let searchQuery = '';
 let url = '';
 
+
+router.get('/category/:name', async(req,res) => {
+    url = req.originalUrl;
+    module.exports.url = url;
+    const category = await Category.findOne({"name": req.params.name}).populate('ads');
+    res.render('categories/show', { category });
+});
+
 router.get('/', async (req, res) => {
     const limit = parseInt(req.query.limit) || 9;
     page = parseInt(req.query.page) || 1;
@@ -81,7 +89,6 @@ router.put('/:id', isLoggedIn, isAuthor, validateAd, catchAsync(async (req,res) 
     category.ads.pull({_id: ad._id});
     category.save();
     const categoryNew = await Category.findOne({name: req.body.ad.category});
-    console.log(categoryNew);
     const adNew = await Ad.findByIdAndUpdate(req.params.id, { title: req.body.ad.title, price: req.body.ad.price, category: categoryNew._id, description: req.body.ad.description, contactNumber: req.body.ad.contactNumber, location: req.body.ad.location});
 
     categoryNew.ads.push(adNew);

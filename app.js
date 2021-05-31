@@ -14,7 +14,6 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 
 const ads = require('./routes/ads');
-const categories = require('./routes/categories');
 const users = require('./routes/users');
 const watched = require('./routes/watched');
 const myAds = require('./routes/my-ads');
@@ -73,7 +72,6 @@ app.use((req, res, next) => {
  
 
 app.use('/ads', ads);
-app.use('/category', categories);
 app.use('/', users);
 app.use('/watched', watched);
 app.use('/my-ads', myAds);
