@@ -9,7 +9,7 @@ let currentPage = require('../routes/ads');
 router.get('/', async(req, res) => {
     if (!req.user) {
         req.flash('error', 'Musisz być zalogowany');
-        return res.redirect('/ads');
+        return res.redirect('/');
     }
 
     const userWatchedAds = await User.findOne({_id: req.user._id}).populate('watchedAds');
@@ -43,14 +43,14 @@ router.get('/:id/add', async(req, res) => {
         if (currentPage.url.includes('category')) {
             return res.redirect(`${currentPage.url}`);
         }
-        if (currentPage.url == `/ads/${ad._id}`) {
-            return res.redirect(`/ads/${ad._id}`);
+        if (currentPage.url == `/${ad._id}`) {
+            return res.redirect(`/${ad._id}`);
         }
         else {
             if (currentPage.searchQuery) {
-                return res.redirect(`/ads/?page=${currentPage.page}&search=${currentPage.searchQuery}#ads`);
+                return res.redirect(`/?page=${currentPage.page}&search=${currentPage.searchQuery}#ads`);
             }
-            return res.redirect(`/ads/?page=${currentPage.page}#ads`);
+            return res.redirect(`/?page=${currentPage.page}#ads`);
         }
     }
 });
@@ -58,7 +58,7 @@ router.get('/:id/add', async(req, res) => {
 router.get('/:id/remove', async(req, res) => {
     if (!req.user) {
         req.flash('error', 'Musisz być zalogowany aby móc usunąć ogłoszenie');
-        return res.redirect('/ads#');
+        return res.redirect('/');
     }
 
     const ad = await Ad.findOne({_id: req.params.id});

@@ -12,15 +12,15 @@ const navbarShrink = () => {
       navbarSearchInput.style.fontSize = "1.6rem";
       navbarSearchInput.style.padding = "1rem 2rem";
       for (let btn of navBtns) {
-        btn.style.padding = "0.5rem 2rem";
+        btn.style.padding = "0.5rem 1.25rem";
       };
     } else {
-      navbar.style.height = "10rem";
+      navbar.style.height = "9rem";
       navbarLogo.style.fontSize = "5rem";
       navbarSearchInput.style.fontSize = "2rem";
-      navbarSearchInput.style.padding = "1.25rem 2.5rem";
+      navbarSearchInput.style.padding = "1rem 2.5rem";
       for (let btn of navBtns) {
-        btn.style.padding = "0.75rem 2.5rem";
+        btn.style.padding = "0.75rem 1.5rem";
       };
     }
 }

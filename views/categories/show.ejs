@@ -1,24 +1,24 @@
 <% layout('layouts/boilerplate') %>
 
 
-<h1 class="heading-1 u-center-text u-margin-top-huge" id="allAds">Kategoria: <%=category.name%></h1>
+<h1 class="heading-1 u-center-text u-margin-top-huge" id="ads">Kategoria: <%=category.name%></h1>
 
 <main class="main u-margin-top">
 
-    <% if (category.ads.length == 0) { %>
+    <% if (categoryAds.docs.length == 0) { %>
         <p class="no-category-alert">Brak ogłoszeń w tej kategorii</p>
     <% } %>
 
-    <% category.ads.forEach(ad => { %>
+    <% categoryAds.docs.forEach(ad => { %>
     
 
     <section class="ad">
-        <a href="../../ads/<%=ad._id%>">      
+        <a href="../../<%=ad._id%>">      
             <img src="https://images.unsplash.com/photo-1619441207978-3d326c46e2c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80" alt="Image" class="ad__image">
         </a>
 
 
-        <a href="../ads/<%=ad._id%>" class="ad__title u-margin-top-small"><%= ad.title %></a>
+        <a href="../<%=ad._id%>" class="ad__title u-margin-top-small"><%= ad.title %></a>
 
         <%  
             const date = new Date(ad.updatedAt) 
@@ -38,3 +38,15 @@
     </section>
     <% }); %>
 </main>
+
+<% if (categoryAds.totalDocs > 9) { %>
+    <div class="pagination">
+        <% if (!(categoryAds.hasPrevPage)) { categoryAds.prevPage = 1 } %><a  class="pagination__btn previous" href="/category/<%=category.name%>?page=<%=categoryAds.prevPage%>#ads"><i class="fas fa-angle-left"></i></a>
+        <% if (categoryAds.page == 1) { %>  <% } else { %><a class="pagination__btn" href="/category/<%=category.name%>?page=1#ads">1</a><% } %>
+        <% if (!(categoryAds.hasPrevPage) || categoryAds.prevPage == 1) {  %>  <% } else { %><a  class="pagination__btn" href="/category/<%=category.name%>?page=<%=categoryAds.prevPage%>#ads"><%=categoryAds.prevPage%></a><% } %>
+        <a  class="pagination__btn active" href="/category/<%=category.name%>?page=<%=categoryAds.page%>#ads"><%=categoryAds.page%></a>
+        <% if (!(categoryAds.hasNextPage) || categoryAds.nextPage == categoryAds.totalPages) {  %>  <% } else { %><a  class="pagination__btn" href="/category/<%=category.name%>?page=<%=categoryAds.nextPage%>#ads"><%=categoryAds.nextPage%></a><% } %>
+        <% if (categoryAds.page == categoryAds.totalPages) { %>  <% } else { %> <a  class="pagination__btn" href="/category/<%=category.name%>?page=<%=categoryAds.totalPages%>#ads"><%=categoryAds.totalPages%></a><% } %>
+        <% if (!(categoryAds.hasNextPage)) { categoryAds.nextPage = categoryAds.totalPages } %> <a  class="pagination__btn next" href="/category/<%=category.name%>?page=<%=categoryAds.nextPage%>#ads"><i class="fas fa-angle-right"></i></a>
+    </div>    
+    <% } %>

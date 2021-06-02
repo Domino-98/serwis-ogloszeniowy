@@ -51,6 +51,7 @@ const sessionConfig = {
         maxAge:  1000 * 60 * 60 * 24 * 7
     }
 }
+
 app.use(session(sessionConfig));
 app.use(flash());
 
@@ -70,17 +71,10 @@ app.use((req, res, next) => {
     next();
 });
  
-
-app.use('/ads', ads);
 app.use('/', users);
 app.use('/watched', watched);
 app.use('/my-ads', myAds);
-
-app.get('/', (req, res) => {
-    res.render('home');
-});
-
-
+app.use('/', ads);
 
 app.all('*', (req, res, next) => {
     next(new ExpressError('Nie znaleziono strony', 404));

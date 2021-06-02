@@ -1,14 +1,14 @@
 <nav class="navbar">
-    <a class="navbar__logo-text" href="/ads">ADBOX</a>
+    <a class="navbar__logo-text" href="/">ADBOX</a>
 
-    <form class="navbar__search" action="/ads/<%='#ads'%>" method="GET">
+    <form class="navbar__search" action="/<%='#ads'%>" method="GET">
         <input class="navbar__search-input" type="text" id="searchInput" placeholder="Wyszukaj ogłoszenie"
             name="search">
         <button class="navbar__search-button"><i class="fas fa-search"></i></button>
     </form>
 
     <ul class="nav">
-        <li class="nav__item"><a class="nav__link" href="/ads/new">Dodaj ogłoszenie</a></li>
+        <li class="nav__item"><a class="nav__link" href="/new">Dodaj ogłoszenie</a></li>
         <% if (!(currentUser)) { %>
         <li class="nav__item"><a class="nav__link" href="/login">Logowanie</a></li>
         <li class="nav__item"><a class="nav__link" href="/register">Rejestracja</a></li>

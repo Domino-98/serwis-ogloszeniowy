@@ -16,7 +16,7 @@ router.post('/register', catchAsync(async (req, res, next) => {
         req.login(registeredUser, err => {
             if (err) return next(err);
             req.flash('success', 'Witaj w serwisie ogłoszeniowym ADBOX!');
-            res.redirect('/ads');
+            res.redirect('/');
         })
     } catch(e) {
         let msg = '';
@@ -39,17 +39,15 @@ router.get('/login', (req, res) => {
 
 router.post('/login', passport.authenticate('local', {failureFlash: 'Niepoprawny adres email lub hasło', failureRedirect: '/login'}), catchAsync(async (req, res) => {
     req.flash('success', 'Witamy z powrotem!');
-    const redirectUrl = req.session.returnTo || '/ads';
+    const redirectUrl = req.session.returnTo || '/';
     delete req.session.returnTo;
     res.redirect(redirectUrl);
 }));
 
-
 router.get('/logout', (req, res) => {
     req.logout();
     req.flash('success', 'Zostałeś pomyślnie wylogowany');
-    res.redirect('/ads');
+    res.redirect('/');
 });
-
 
 module.exports = router;
