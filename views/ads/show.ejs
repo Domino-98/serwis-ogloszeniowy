@@ -1,8 +1,9 @@
 <% layout('layouts/boilerplate') %>
 <div class="card-wrapper">
     <div class="card">
-        <img src="https://images.unsplash.com/photo-1619441207978-3d326c46e2c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80" alt="Image" class="card__image">
-
+        <% for (let img of ad.images) { %>
+            <img src="<%=img.url%>" alt="Image" class="card__image">
+        <% } %>
         <div class="card__info">
                 <% if (!currentUser) { %>
                     <a class="card__observe-icon" href="/watched/<%=ad._id%>/add"><i title="Dodaj do obserwowanych" class="far fa-star"></i></a>

@@ -9,6 +9,12 @@ const AdSchema = new Schema({
     description: String,
     contactNumber: Number,
     location: String,
+    images: [
+        {
+            url: String,
+            filename: String
+        }
+    ],
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User'

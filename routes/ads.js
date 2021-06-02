@@ -4,6 +4,9 @@ const catchAsync = require('../utils/catchAsync');
 const { isLoggedIn, validateAd, isAuthor } = require('../middleware');
 const Ad = require('../models/ad');
 const Category = require('../models/category');
+const multer  = require('multer')
+const { storage } = require('../cloudinary');
+const upload = multer({ storage });
 
 let page = '';
 let searchQuery = '';
@@ -54,14 +57,16 @@ router.get('/new', isLoggedIn, (req, res) => {
     res.render('ads/new');
 });
 
-router.post('/',  isLoggedIn, validateAd, catchAsync(async (req, res, next) => {
+router.post('/',  isLoggedIn, upload.array('image'), validateAd, catchAsync(async (req, res, next) => {
     const ad = new Ad(req.body.ad);
+    ad.images = req.files.map(f => ({url: f.path, filename: f.filename}));
     ad.author = req.user._id;
     const category = await Category.findOne({name: req.body.ad.category});
     ad.category = category._id;
     category.ads.push(ad);
     await ad.save();
     await category.save();
+    console.log(ad);
     req.flash('success', 'Pomyślnie utworzono nowe ogłoszenie!')
     res.redirect(`/${ad._id}`);
 }));
