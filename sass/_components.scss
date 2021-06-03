@@ -55,18 +55,35 @@
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
 
     &__title {
         font-size: 2rem;
         font-weight: 700;
         text-overflow: ellipsis;
         white-space: nowrap;
+        overflow: hidden;
 
         &:link,
         &:visited {
             text-decoration: none;
             color: #000;
+        }
+    }
+
+    &__date-location {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__location {
+        font-size: 1.2rem;
+        color: $color-grey-dark-2;
+        margin-right: .5rem;
+
+        &-icon {
+            font-size: 1.6rem;
+            margin-right: .5rem;
         }
     }
 
@@ -102,7 +119,7 @@
         object-fit: cover;
 
         &-link {
-            height: 100%;
+            height: 25rem;
             margin-bottom: auto;
         }
 
@@ -348,7 +365,7 @@ input[type=file]::file-selector-button:hover {
 
 .card-wrapper {
     width: 100%;
-    max-width: 90rem;
+    max-width: 100rem;
     padding: 0 5rem;
 }
 
@@ -370,6 +387,7 @@ input[type=file]::file-selector-button:hover {
         align-self: stretch;
         max-width: 25rem;
         margin-left: 4rem;
+        color: $color-grey-dark-2;
     }
 
     &__observe-icon {
@@ -390,29 +408,47 @@ input[type=file]::file-selector-button:hover {
         font-size: 1.6rem;
     }
 
-    &__contact-number {
-        margin-top: 1rem;
-        font-size: 1.4rem;
-    }
-
-    &__location {
-        font-size: 1.4rem;
-    }
-
     &__title {
         font-size: 2.5rem;
-        line-height: 3rem;
+        line-height: 3.25rem;
         width: 100%;
+        color: #000;
     }
 
     &__price {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         width: 100%;
+        margin: 1rem 0;
 
-        &::placeholder {
-            color: $color-grey-light-1;
+        &-icon {
+            font-size: 2.2rem;
+            margin-right: 1rem;
         }
     }
+
+    &__contact {
+        align-self: start;
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: $color-secondary;
+        margin: 1rem 0;
+
+        &-icon {
+            font-size: 2.2rem;
+            margin-right: 1rem;
+        }
+    }
+
+    &__location {
+        font-size: 1.8rem;
+        margin: 1rem 0;
+
+        &-icon {
+            font-size: 2.2rem;
+            margin-right: 1rem;
+        }
+    }
+
 
     &__image {
         width: 20%;
@@ -444,6 +480,7 @@ input[type=file]::file-selector-button:hover {
         align-self: start;
         padding: 2rem 0 2rem 0;
         white-space: pre-line;
+        color: $color-grey-dark-2;
     }
 
     &__buttons {
@@ -747,7 +784,7 @@ input[type=file]::file-selector-button:hover {
 }
 
 .splide {
-    width: 40rem;
+    width: 60%;
     height: 100%;
     border-radius: 1rem;
     overflow: hidden;
@@ -761,7 +798,7 @@ input[type=file]::file-selector-button:hover {
 }
 
 .no-img {
-    width: 50%;
+    width: 60%;
 }
 
 .modal {

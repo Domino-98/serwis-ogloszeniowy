@@ -58,16 +58,27 @@ body {
   width: calc(33% - 4rem);
   border-radius: 1rem;
   display: flex;
-  flex-direction: column;
-  overflow: hidden; }
+  flex-direction: column; }
   .ad__title {
     font-size: 2rem;
     font-weight: 700;
     text-overflow: ellipsis;
-    white-space: nowrap; }
+    white-space: nowrap;
+    overflow: hidden; }
     .ad__title:link, .ad__title:visited {
       text-decoration: none;
       color: #000; }
+  .ad__date-location {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+  .ad__location {
+    font-size: 1.2rem;
+    color: #333;
+    margin-right: .5rem; }
+    .ad__location-icon {
+      font-size: 1.6rem;
+      margin-right: .5rem; }
   .ad__price {
     font-size: 1.8rem; }
   .ad__price-observe {
@@ -89,7 +100,7 @@ body {
     border-radius: 1rem;
     object-fit: cover; }
     .ad__image-link {
-      height: 100%;
+      height: 25rem;
       margin-bottom: auto; }
     .ad__image-none {
       width: 100%;
@@ -265,7 +276,7 @@ input[type=file]::file-selector-button:hover {
 
 .card-wrapper {
   width: 100%;
-  max-width: 90rem;
+  max-width: 100rem;
   padding: 0 5rem; }
 
 .card {
@@ -284,7 +295,8 @@ input[type=file]::file-selector-button:hover {
     justify-content: space-between;
     align-self: stretch;
     max-width: 25rem;
-    margin-left: 4rem; }
+    margin-left: 4rem;
+    color: #333; }
   .card__observe-icon {
     position: absolute;
     top: 1rem;
@@ -297,20 +309,33 @@ input[type=file]::file-selector-button:hover {
       transform: scale(1.1); }
   .card__author {
     font-size: 1.6rem; }
-  .card__contact-number {
-    margin-top: 1rem;
-    font-size: 1.4rem; }
-  .card__location {
-    font-size: 1.4rem; }
   .card__title {
     font-size: 2.5rem;
-    line-height: 3rem;
-    width: 100%; }
+    line-height: 3.25rem;
+    width: 100%;
+    color: #000; }
   .card__price {
-    font-size: 1.6rem;
-    width: 100%; }
-    .card__price::placeholder {
-      color: #e4e4e4; }
+    font-size: 1.8rem;
+    width: 100%;
+    margin: 1rem 0; }
+    .card__price-icon {
+      font-size: 2.2rem;
+      margin-right: 1rem; }
+  .card__contact {
+    align-self: start;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #ef233c;
+    margin: 1rem 0; }
+    .card__contact-icon {
+      font-size: 2.2rem;
+      margin-right: 1rem; }
+  .card__location {
+    font-size: 1.8rem;
+    margin: 1rem 0; }
+    .card__location-icon {
+      font-size: 2.2rem;
+      margin-right: 1rem; }
   .card__image {
     width: 20%;
     height: auto;
@@ -335,7 +360,8 @@ input[type=file]::file-selector-button:hover {
     font-size: 1.5rem;
     align-self: start;
     padding: 2rem 0 2rem 0;
-    white-space: pre-line; }
+    white-space: pre-line;
+    color: #333; }
   .description-box__buttons {
     margin-top: 3rem;
     display: flex;
@@ -557,7 +583,7 @@ input[type=file]::file-selector-button:hover {
       color: #333; }
 
 .splide {
-  width: 40rem;
+  width: 60%;
   height: 100%;
   border-radius: 1rem;
   overflow: hidden; }
@@ -569,7 +595,7 @@ input[type=file]::file-selector-button:hover {
   object-fit: cover; }
 
 .no-img {
-  width: 50%; }
+  width: 60%; }
 
 .modal {
   display: none;

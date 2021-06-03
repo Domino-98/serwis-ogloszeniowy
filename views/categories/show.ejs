@@ -29,7 +29,14 @@
             const date = new Date(ad.updatedAt) 
             const updatedAt = date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate() + ' ' + date.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes();
         %>
-        <p class="ad__creation-date">Utworzono <%=updatedAt%></p>
+        
+        <div class="ad__date-location">
+            <div class="ad__location">
+                <i class="fas fa-map-marker-alt ad__location-icon"></i>
+                <span class="ad__location-text"><%=ad.location%></span>
+            </div>
+            <p class="ad__creation-date"><%=updatedAt%></p>
+        </div>
 
         <div class="ad__price-observe">
             <span class="ad__price"><%=ad.price%> zł</span>

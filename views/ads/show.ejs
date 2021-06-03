@@ -33,7 +33,7 @@
                 <% } %>
 
                 <div class="card__title">
-                    <h3 class="heading-3"><%=ad.title%></h3>    
+                    <h3><%=ad.title%></h3>    
                     <%  
                         const date = new Date(ad.updatedAt) 
                         const updatedAt = date.getFullYear()+'-' + (date.getMonth()<10?'0':'') + (date.getMonth()+1) + '-'+ (date.getDate()<10?'0':'') + date.getDate() + ' ' + date.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes();
@@ -42,16 +42,19 @@
                    <p class="ad__creation-date">Utworzono <%=updatedAt%></p>
                 </div>
     
-                <div class="card__price">
-                    <span>Cena: <%=ad.price%> zł</span>
+                <div class="card__contact" title="Pokaż numer kontaktowy">
+                    <i class="fas fa-phone card__contact-icon"></i>
+                    <span class="card__contact-text">Pokaż numer telefonu</span>
                 </div>
 
-                <div class="card__contact-number">
-                    <span>Numer kontaktowy: <%=ad.contactNumber%></span>
+                <div class="card__price">
+                    <i class="fas fa-money-bill-wave card__price-icon"></i>
+                    <span class="card__price-text"><%=ad.price%> zł</span>
                 </div>
 
                 <div class="card__location">
-                    <span>Miejscowość: <%=ad.location%></span>
+                    <i class="fas fa-map-marker-alt card__location-icon"></i>
+                    <span class="card__location-text"><%=ad.location%></span>
                 </div>
 
         </div>
@@ -91,3 +94,18 @@
 </script>
 
 <script src="../../public/js/imgModal.js"></script>
+
+<script>
+    const contactEl=document.querySelector('.card__contact')
+    const contactText=document.querySelector('.card__contact-text');
+    const contactNum=  <%=ad.contactNumber%>;
+
+    const showContact=() => {
+        contactText.textContent=contactNum;
+        contactEl.style.cursor='default';
+        contactEl.removeAttribute('title');
+        contactText.style.fontWeight='700';
+    }
+
+    contactEl.addEventListener('click', showContact);
+</script>
