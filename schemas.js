@@ -7,5 +7,6 @@ module.exports.adSchema = Joi.object({
         description: Joi.string().max(1000).required(),
         contactNumber: Joi.string().min(6).max(10).pattern(/^[0-9]+$/).required(),
         location: Joi.string().max(40).required()
-    }).required()
+    }).required(),
+    deleteImages: Joi.array()
 });

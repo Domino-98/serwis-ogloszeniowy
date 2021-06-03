@@ -5,7 +5,7 @@ const { isLoggedIn, validateAd, isAuthor } = require('../middleware');
 const Ad = require('../models/ad');
 const Category = require('../models/category');
 const multer  = require('multer')
-const { storage } = require('../cloudinary');
+const { storage, cloudinary } = require('../cloudinary');
 const upload = multer({ storage });
 
 let page = '';
@@ -91,16 +91,27 @@ router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(async (req,res) => {
     res.render(`ads/edit`, { ad });
 }));
 
-router.put('/:id', isLoggedIn, isAuthor, validateAd, catchAsync(async (req,res) => {
+router.put('/:id', isLoggedIn, isAuthor, upload.array('image'), validateAd, catchAsync(async (req,res) => {
+    console.log(req.body);
     const ad = await Ad.findById(req.params.id);
     const category = await Category.findOne({_id: ad.category});
     category.ads.pull({_id: ad._id});
     category.save();
     const categoryNew = await Category.findOne({name: req.body.ad.category});
     const adNew = await Ad.findByIdAndUpdate(req.params.id, { title: req.body.ad.title, price: req.body.ad.price, category: categoryNew._id, description: req.body.ad.description, contactNumber: req.body.ad.contactNumber, location: req.body.ad.location});
+    const imgs = req.files.map(f => ({url: f.path, filename: f.filename}));
+    adNew.images.push(...imgs);
 
-    categoryNew.ads.push(adNew);
-    categoryNew.save();
+    await adNew.save();
+    if (req.body.deleteImages) {
+        for (let filename of req.body.deleteImages) {
+            await cloudinary.uploader.destroy(filename);
+        }
+        await ad.updateOne({$pull: {images: {filename: {$in: req.body.deleteImages}}}});
+        console.log(adNew);
+    }
+    await categoryNew.ads.push(adNew);
+    await categoryNew.save();
 
     req.flash('success', 'Pomyślnie zaktualizowano ogłoszenie!')
     res.redirect(`/${ad._id}`);

@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') %>
 <div class="new-ad">
     <h1 class="heading-1 u-margin-bottom u-center-text">Edytuj ogłoszenie</h1>
-    <form class="new-ad__form" action="/<%=ad._id%>?_method=PUT" method="POST">
+    <form class="new-ad__form" action="/<%=ad._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
         <div class="new-ad__group">
             <input class="new-ad__input" type="text" id="title" name="ad[title]" maxlength="60" required value="<%=ad.title%>">
             <label class="new-ad__label" for="title">Tytuł</label>
@@ -123,6 +123,23 @@
             <input class="new-ad__input" type="text" id="location" name="ad[location]" maxlength="40" value="<%=ad.location%>" required>
             <label for="location" class="new-ad__label">Miejscowość</label>
         </div>
+        <div class="new-ad__group">
+            <label class="new-ad__upload-label" for="image">Dodaj zdjęcia</label>
+            <input type="file" name="image" id="image" multiple>
+         </div>
+         <div class="new-ad__group">
+             <div class="new-ad__images">
+                <% ad.images.forEach((img, i) => { %>
+                    <div class="new-ad__img-box">
+                        <img class="new-ad__img-thumbnail" src="<%=img.url%>" alt="">
+                        <div class="new-ad__img-delete">
+                            <label class="new-ad__img-delete-label" for="image-<%=i%>">Usunąć?</label>
+                            <input name="deleteImages[]" type="checkbox" id="image-<%=i%>" value="<%=img.filename%>">
+                        </div>
+                    </div>
+                <% }) %>
+             </div>
+         </div>
         <button class="btn" type="submit">Edytuj</button>
     </form>
 </div>
