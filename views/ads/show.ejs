@@ -2,17 +2,23 @@
 <div class="card-wrapper">
     <div class="card">
 
-        <div id="splide" class="splide">
-            <div class="splide__track">
-                <ul class="splide__list">
-                    <% for (let img of ad.images) { %>
-                    <li class="splide__slide">
-                        <img src="<%=img.url%>" alt="Image" class="img">
-                    </li>
-                    <% } %>
-                </ul>
-            </div>
-        </div>
+            <% if (ad.images.length > 0) { %>
+                <div id="splide" class="splide">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <% for (let img of ad.images) { %>
+                            <li class="splide__slide">
+                                <img src="<%=img.url%>" alt="Image" class="img" title="Kliknij aby powiększyć">
+                            </li>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+            <% } else { %>
+            <img src="../../public/images/no-image.jpg" alt="Image" class="no-img"> 
+            <% } %>
+
+
 
         <div class="modal">
             <span class="modal__close">×</span>

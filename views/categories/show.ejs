@@ -13,8 +13,13 @@
     
 
     <section class="ad">
-        <a href="../../<%=ad._id%>">      
-            <img src="https://images.unsplash.com/photo-1619441207978-3d326c46e2c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80" alt="Image" class="ad__image">
+        
+        <a class="ad__image-link" href="../<%=ad._id%>">
+            <% if (ad.images.length > 0) { %>
+            <img src="<%=ad.images[0].url%>" alt="Image" class="ad__image">
+            <% } else { %>
+            <img src="../../public/images/no-image.jpg" alt="Image" class="ad__image-none"> 
+            <% } %>
         </a>
 
 
