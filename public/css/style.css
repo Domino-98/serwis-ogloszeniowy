@@ -177,10 +177,12 @@ body {
     width: 100%;
     border-radius: 1rem;
     appearance: none;
-    margin-top: -1.5rem; }
+    margin-top: -1.5rem;
+    border: 1px solid #e4e4e4; }
     .new-ad__select:focus {
       outline: none;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
+      border: 1px solid #ef233c;
+      box-shadow: 0 0 10px rgba(255, 51, 51, 0.9); }
   .new-ad__group {
     position: relative;
     margin-top: 1.5rem;
@@ -204,12 +206,14 @@ body {
     transition: all .3s;
     font-family: inherit;
     width: 100%;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); }
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border: 1px solid #e4e4e4; }
     .new-ad__input[type=number] {
       appearance: textfield; }
     .new-ad__input:focus {
       outline: none;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
+      border: 1px solid #ef233c;
+      box-shadow: 0 0 10px rgba(255, 51, 51, 0.9); }
     .new-ad__input:focus ~ .new-ad__label,
     .new-ad__input:not(:focus):valid ~ .new-ad__label {
       top: -3rem;
@@ -267,7 +271,8 @@ body {
     .card__price::placeholder {
       color: #e4e4e4; }
   .card__image {
-    width: 60%;
+    width: 20%;
+    height: auto;
     border-radius: 1rem; }
 
 .description-box {
@@ -509,6 +514,63 @@ body {
       border-right: 1px solid #ef233c; }
     .user__input::placeholder {
       color: #333; }
+
+.splide {
+  width: 40rem;
+  height: 100%;
+  border-radius: 1rem;
+  overflow: hidden; }
+  .splide .img {
+    cursor: pointer;
+    transition: all .3s;
+    height: 100%;
+    width: 100%;
+    object-fit: cover; }
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 10rem;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7); }
+  .modal__close {
+    position: absolute;
+    top: 15%;
+    right: 30%;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    z-index: 2;
+    transition: .3s; }
+    .modal__close:hover, .modal__close:focus {
+      color: red;
+      cursor: pointer; }
+  .modal__img {
+    margin: auto;
+    display: block;
+    width: 50%;
+    height: auto;
+    max-width: 70rem;
+    position: relative;
+    animation-name: fade;
+    animation-duration: 0.5s; }
+
+@media only screen and (max-width: 700px) {
+  .modal__img {
+    width: 100%; }
+  .modal__close {
+    right: 10%; } }
+
+@keyframes fade {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 100; } }
 
 .container {
   display: flex;

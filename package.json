@@ -4,6 +4,7 @@
     "sass": "node-sass sass/main.scss public/css/style.css -w"
   },
   "dependencies": {
+    "@splidejs/splide": "^2.4.21",
     "cloudinary": "^1.25.2",
     "connect-flash": "^0.1.1",
     "dotenv": "^10.0.0",
