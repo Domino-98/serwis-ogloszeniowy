@@ -22,6 +22,8 @@ const users = require('./routes/users');
 const watched = require('./routes/watched');
 const myAds = require('./routes/my-ads');
 
+app.use(express.json());
+
 mongoose.connect('mongodb://localhost:27017/serwis-ogloszeniowy', {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -39,11 +41,11 @@ app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(favicon(path.join(__dirname,'public','images','logo.ico')));
 app.use('/public', express.static('public'));
+app.use('/node_modules', express.static('node_modules'));
 
 const sessionConfig = {
     secret: 'secret',

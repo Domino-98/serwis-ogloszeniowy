@@ -7,6 +7,9 @@ const Category = require('../models/category');
 const multer  = require('multer')
 const { storage, cloudinary } = require('../cloudinary');
 const upload = multer({ storage });
+require('dotenv').config();
+
+const nodemailer = require('nodemailer');
 
 let page = '';
 let searchQuery = '';
@@ -80,6 +83,44 @@ router.get('/:id', catchAsync(async (req,res) => {
         return res.redirect('/');
     }
     res.render('ads/show', { ad });
+}));
+
+router.post('/:id', catchAsync(async (req, res) => {
+    const ad = await Ad.findById(req.params.id).populate('author');
+
+    let msgOutput = `
+    <p>Otzymałeś nową wiadomość od zainteresowanego klienta</p>
+    <h3>Kontakt do klienta: </h3>
+    <p>${req.body.email}</p>
+    <h3>Wiadomość: </h3>
+    <p style="white-space: pre-line;">${req.body.message}</p>
+    `;
+
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASS
+    }
+  });
+
+  let mailOptions = {
+    from: `Serwis ogłoszeniowy ADBOX ${req.body.email}`,
+    to: ad.author.email,
+    subject: `Wiadomość od ${req.body.email}`,
+    html: msgOutput
+  };
+
+  await transporter.sendMail(mailOptions, (err) => {
+      if (err) {
+          console.log(err);
+          req.flash('error', 'Wystąpił błąd podczas wysyłania wiadomości');
+          return res.redirect(`/${ad._id}`);
+      } else {
+        req.flash('success', 'Pomyślnie wysłano wiadomość!');
+        res.redirect(`/${ad._id}`);
+      }
+  });
 }));
 
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(async (req,res) => {

@@ -42,9 +42,17 @@
                    <p class="ad__creation-date">Utworzono <%=updatedAt%></p>
                 </div>
     
-                <div class="card__contact" title="Pokaż numer kontaktowy">
-                    <i class="fas fa-phone card__contact-icon"></i>
-                    <span class="card__contact-text">Pokaż numer telefonu</span>
+                <% if (!(currentUser && ad.author.equals(currentUser._id))) { %>
+                <div class="card__contact">
+                    <a class="card__contact-text" href="#contact">
+                    <i class="fa fa-envelope card__contact-icon" aria-hidden="true"></i>
+                    <span>Skontaktuj się</span></a>
+                </div>
+                <% } %>
+
+                <div class="card__phone" title="Pokaż numer kontaktowy">
+                    <i class="fas fa-phone card__phone-icon"></i>
+                    <span class="card__phone-text">Pokaż numer telefonu</span>
                 </div>
 
                 <div class="card__price">
@@ -84,6 +92,21 @@
          <% } %>
     </div>
 
+    <% if (!(currentUser && ad.author.equals(currentUser._id))) { %>
+    <div class="contact" id="contact">
+        <form action="/<%=ad._id%>" class="contact-form" method="POST">
+            <h2 class="heading-2">Skontaktuj się</h2>
+            <div class="contact-form__group">
+                <input class="contact-form__input" id="email" name="email" type="email" placeholder="Email" required>
+            </div>
+            <div class="contact-form__group">
+                <textarea name="message" cols="30" id="message" rows="10" class="contact-form__input" placeholder="Treść wiadomości" required></textarea>
+            </div>
+            <button class="btn btn--medium">Wyślij wiadomość</button>
+        </form>
+    </div>
+    <% } %>
+
 </div>
 
 <script src="../../node_modules/@splidejs/splide/dist/js/splide.min.js"></script>
@@ -96,8 +119,8 @@
 <script src="../../public/js/imgModal.js"></script>
 
 <script>
-    const contactEl=document.querySelector('.card__contact')
-    const contactText=document.querySelector('.card__contact-text');
+    const contactEl=document.querySelector('.card__phone')
+    const contactText=document.querySelector('.card__phone-text');
     const contactNum=  <%=ad.contactNumber%>;
 
     const showContact=() => {
