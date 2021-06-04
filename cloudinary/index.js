@@ -11,7 +11,7 @@ const storage = new CloudinaryStorage({
     cloudinary,
     params: {
         folder: 'serwis-ogloszeniowy',
-        allowedFormats: ['jpg', 'jpeg', 'png']
+        allowedFormats: ['jpg', 'jpeg', 'png', 'webp']
     }
 });
 
