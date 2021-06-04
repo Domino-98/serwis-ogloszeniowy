@@ -69,7 +69,6 @@ router.post('/',  isLoggedIn, upload.array('image'), validateAd, catchAsync(asyn
     category.ads.push(ad);
     await ad.save();
     await category.save();
-    console.log(ad);
     req.flash('success', 'Pomyślnie utworzono nowe ogłoszenie!')
     res.redirect(`/${ad._id}`);
 }));
@@ -132,8 +131,7 @@ router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(async (req,res) => {
     res.render(`ads/edit`, { ad });
 }));
 
-router.put('/:id', isLoggedIn, isAuthor, upload.array('image'), validateAd, catchAsync(async (req,res) => {
-    console.log(req.body);
+router.put('/:id', isLoggedIn, isAuthor, upload.array('image'), validateAd, catchAsync(async (req,res) => {;
     const ad = await Ad.findById(req.params.id);
     const category = await Category.findOne({_id: ad.category});
     category.ads.pull({_id: ad._id});
@@ -149,7 +147,6 @@ router.put('/:id', isLoggedIn, isAuthor, upload.array('image'), validateAd, catc
             await cloudinary.uploader.destroy(filename);
         }
         await ad.updateOne({$pull: {images: {filename: {$in: req.body.deleteImages}}}});
-        console.log(adNew);
     }
     await categoryNew.ads.push(adNew);
     await categoryNew.save();

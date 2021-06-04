@@ -150,6 +150,18 @@
     transition: all .2s;
     height: 9rem;
 
+    &__logo-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    &__logo {
+        display: block;
+        width: 5rem;
+        margin-left: 1rem;
+        transition: all .2s;
+    }
+
     &__logo-text {
         font-size: 5rem;
         font-family: Audiowide, Roboto, Arial, Helvetica, sans-serif;

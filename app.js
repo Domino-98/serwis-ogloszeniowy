@@ -43,7 +43,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
-app.use(favicon(path.join(__dirname,'public','images','logo.ico')));
+app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 app.use('/public', express.static('public'));
 app.use('/node_modules', express.static('node_modules'));
 
