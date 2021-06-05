@@ -23,7 +23,7 @@ module.exports.validateAd = (req, res, next) => {
 
 module.exports.isAuthor = async (req, res, next) => {
     const ad = await Ad.findById(req.params.id);
-    if (!ad.author.equals(req.user._id)) {
+    if (!ad.author.equals(req.user._id) && req.user.isAdmin == false) {
         req.flash('error', 'Nie masz uprawnień do zaktualizowania tego ogłoszenia!');
         return res.redirect(`/ads/${req.params.id}`);
     }

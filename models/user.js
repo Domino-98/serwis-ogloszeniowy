@@ -18,7 +18,12 @@ const UserSchema = new Schema({
                 type: Schema.Types.ObjectId,
                 ref: 'Ad'
             }
-        ]
+    ],
+    isAdmin: {
+        type: Boolean,
+        required: true,
+        default: false
+    }
 })
 
 UserSchema.plugin(passportLocalMongoose, {usernameField: 'email'});

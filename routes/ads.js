@@ -88,7 +88,7 @@ router.post('/:id', catchAsync(async (req, res) => {
     const ad = await Ad.findById(req.params.id).populate('author');
 
     let msgOutput = `
-    <p>Otzymałeś nową wiadomość od zainteresowanego klienta</p>
+    <p>Otrzymałeś wiadomość od zainteresowanego klienta</p>
     <h3>Kontakt do klienta: </h3>
     <p>${req.body.email}</p>
     <h3>Wiadomość: </h3>
@@ -124,7 +124,7 @@ router.post('/:id', catchAsync(async (req, res) => {
 
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(async (req,res) => {
     const ad = await Ad.findById(req.params.id).populate('category');
-    if (!ad.author.equals(req.user._id)) {
+    if (!ad.author.equals(req.user._id) && req.user.isAdmin == false) {
         req.flash('error', 'Nie masz uprawnień do zaktualizowania tego ogłoszenia!');
         return res.redirect(`/${req.params.id}`);
     }

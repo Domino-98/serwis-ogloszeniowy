@@ -8,7 +8,7 @@
                         <ul class="splide__list">
                             <% for (let img of ad.images) { %>
                             <li class="splide__slide">
-                                <img src="<%=img.url%>" alt="Image" class="img" title="Kliknij aby powiększyć">
+                                <img src="<%=img.url%>" alt="Image" class="img"git log >
                             </li>
                             <% } %>
                         </ul>
@@ -78,7 +78,7 @@
             <%=ad.description%>
         </p>
 
-        <% if (currentUser && ad.author.equals(currentUser._id)) { %>
+        <% if (currentUser && ad.author.equals(currentUser._id)  || (currentUser && currentUser.isAdmin == true)) { %>
         <div class="description-box__buttons">
             <div>              
                 <a class="btn btn--small" href="/<%=ad._id%>/edit">Edytuj ogłoszenie</a>
