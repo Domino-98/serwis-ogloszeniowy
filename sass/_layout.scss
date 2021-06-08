@@ -11,13 +11,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 15rem 0 7rem 0;
+    margin: 12rem 0 7rem 0;
     padding: 5rem 0;
     box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+
+    @media only screen and (max-width: $bp-small) {
+        margin: 5rem 0 7rem 0;
+    }
 }
 
 .main {
-    width: 66%;
+    width: 75%;
     display: flex;
     flex-wrap: wrap;
 }
@@ -27,6 +31,7 @@
     flex-direction: column;
     align-items: center;
     background-color: $color-primary-dark;
+
 
     &__logo {
         font-family: Audiowide, Arial, Helvetica, sans-serif;
@@ -38,6 +43,12 @@
     &__content {
         display: flex;
         font-size: 1.5rem;
+
+        @media only screen and (max-width: $bp-small) {
+            flex-direction: column;
+            align-items: center;
+        }
+
     }
 
     &__list {
@@ -64,6 +75,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        @media only screen and (max-width: $bp-small) {
+            margin: 0;
+        }
     }
 
     &__social-list {

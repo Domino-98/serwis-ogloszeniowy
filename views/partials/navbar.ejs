@@ -12,16 +12,55 @@
     </form>
 
     <ul class="nav">
-        <li class="nav__item"><a class="nav__link" href="/new">Dodaj ogłoszenie</a></li>
-        <% if (!(currentUser)) { %>
-        <li class="nav__item"><a class="nav__link" href="/login">Logowanie</a></li>
-        <li class="nav__item"><a class="nav__link" href="/register">Rejestracja</a></li>
-        <% } else { %>
-        <li class="nav__item"><a class="nav__link" href="/watched">Obserwowane</a></li>
-        <li class="nav__item"><a class="nav__link" href="/my-ads">Moje ogłoszenia</a></li>
-        <li class="nav__item"><a class="nav__link" href="/logout">Wyloguj się</a></li>
-        <% } %>
+        <li class="nav__item nav__add"><a class="nav__link" href="/new">Dodaj ogłoszenie</a></li>
+        <li class="nav__item nav__user"><i class="fas fa-user"></i></li>
+        <div class="nav__dropdown">
+            <% if (!(currentUser)) { %>
+                <a class="nav__dropdown-link" href="/login"><span class="nav__dropdown-item">Logowanie</span></a>
+                <a class="nav__dropdown-link" href="/register"><span class="nav__dropdown-item">Rejestracja</span></a>
+                <% } else { %>
+                <a class="nav__dropdown-link" href="/watched"><span class="nav__dropdown-item nav__watched">Obserwowane</span></a>
+                <a class="nav__dropdown-link" href="/my-ads"><span class="nav__dropdown-item nav__my-ads">Moje ogłoszenia</span></a>
+                <a class="nav__dropdown-link" href="/logout"><span class="nav__dropdown-item">Wyloguj się</span></a>
+            <% } %>
+        </div>
     </ul>
+
+
 </nav>
 
-<script src="../../public/js/navbarShrink.js"></script>
+
+<script>
+
+    const userBtn=document.querySelector('.nav__user');
+    const dropdownMenu=document.querySelector('.nav__dropdown');
+
+    const showMenu=() => {
+        if (dropdownMenu.classList.contains('show')) {
+            dropdownMenu.classList.remove('show');
+            userBtn.classList.remove('active-icon');
+        } else {
+            dropdownMenu.classList.add('show');
+            userBtn.classList.add('active-icon');
+        }
+    }
+
+    userBtn.addEventListener('click', showMenu);
+
+    let prevScrollpos=window.pageYOffset;
+
+    window.onscroll=function () {
+        var currentScrollPos=window.pageYOffset;
+        if (prevScrollpos>currentScrollPos) {
+            document.querySelector('.navbar').style.top="0";
+        } else {
+            document.querySelector('.navbar').style.top="-8rem";
+            if (dropdownMenu.classList.contains('show')) {
+                dropdownMenu.classList.remove('show');
+                userBtn.classList.remove('active-icon');
+            }
+        }
+        prevScrollpos=currentScrollPos;
+    }
+
+</script>

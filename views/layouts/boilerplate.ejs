@@ -14,9 +14,15 @@
 <body>
     <%-include('../partials/navbar')%>
 
+        <form class="navbar__search-sm" action="/<%='#ads'%>" method="GET">
+            <input class="navbar__search-input" type="text" id="searchInput" placeholder="Wyszukaj ogłoszenie"
+                name="search">
+            <button class="navbar__search-button"><i class="fas fa-search"></i></button>
+        </form>
+
         <div class="container">
             <%-include('../partials/flash')%>
-            <%- body %>
+                <%- body %>
         </div>
 
     <%-include('../partials/footer')%>

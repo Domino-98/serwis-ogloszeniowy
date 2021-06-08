@@ -19,7 +19,7 @@ let url = '';
 router.get('/category/:name', async(req,res) => {
     url = req.originalUrl;
     module.exports.url = url;
-    const limit = parseInt(req.query.limit) || 9;
+    const limit = parseInt(req.query.limit) || 12;
     page = parseInt(req.query.page) || 1;
     const category = await Category.findOne({name: req.params.name});
     const categoryAds = await Ad.paginate({'category': category._id}, {limit: limit, page: page});
@@ -27,7 +27,7 @@ router.get('/category/:name', async(req,res) => {
 });
 
 router.get('/', async (req, res) => {
-    const limit = parseInt(req.query.limit) || 9;
+    const limit = parseInt(req.query.limit) || 12;
     page = parseInt(req.query.page) || 1;
     searchQuery = req.query.search;
     module.exports.page = page;

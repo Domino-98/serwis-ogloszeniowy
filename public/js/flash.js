@@ -5,4 +5,6 @@ const removeMessage = () => {
     flash.classList.add('remove');
 }
 
-dismissBtn.addEventListener('click', removeMessage);
+if (dismissBtn) {
+    dismissBtn.addEventListener('click', removeMessage);
+}
