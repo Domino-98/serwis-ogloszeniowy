@@ -6,7 +6,8 @@
 }
 
 .header {
-    background-image: linear-gradient(180deg, #ffffff 0%, #ebebeb 74%);
+    background-image: url('../../public/images/cool-background.png');
+    background-position: center;
     width: 100%;
     display: flex;
     flex-direction: column;

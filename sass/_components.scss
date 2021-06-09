@@ -157,7 +157,7 @@
 .navbar {
     width: 100%;
     background-color: $color-secondary;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .7);
     position: fixed;
     z-index: 10;
     display: flex;
@@ -166,8 +166,6 @@
     transition: top .5s;
     height: 8rem;
     top: 0;
-
-
 
     &__logo-wrapper {
         display: flex;
@@ -364,6 +362,8 @@
     &__dropdown {
         position: absolute;
         display: flex;
+        transform: scaleY(0);
+        overflow: hidden;
         align-items: center;
         justify-content: center;
         flex-direction: column;
@@ -375,7 +375,8 @@
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
         visibility: hidden;
         opacity: 0;
-        transition: all .3s ease-in-out;
+        transform-origin: top;
+        transition: all 0.35s ease;
 
 
         &-link {
@@ -395,6 +396,7 @@
 }
 
 .show {
+    transform: scaleY(1);
     visibility: visible;
     opacity: 1;
 }
@@ -1009,7 +1011,7 @@ input[type=file]::file-selector-button:hover {
         }
 
         &::placeholder {
-            color: $color-grey-dark-2;
+            color: $color-grey-dark-1;
         }
     }
 }
@@ -1075,6 +1077,10 @@ input[type=file]::file-selector-button:hover {
 
 .no-img {
     width: 60%;
+
+    @media only screen and (max-width: $bp-medium) {
+        margin-bottom: 5rem;
+    }
 }
 
 .modal {
@@ -1118,15 +1124,16 @@ input[type=file]::file-selector-button:hover {
         animation-name: fade;
         animation-duration: 0.3s;
     }
-}
 
-@media only screen and (max-width: $bp-medium) {
-    .modal__img {
-        width: 100%;
-    }
+    
+    @media only screen and (max-width: $bp-medium) {
+        &__img {
+            width: 100%;
+        }
 
-    .modal__close {
-        right: 10%;
+        &__close {
+            right: 15%;
+        }
     }
 }
 

@@ -111,9 +111,13 @@
 
 <script src="../../node_modules/@splidejs/splide/dist/js/splide.min.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        new Splide('#splide').mount();
-    });
+    let adImgs = <%-ad.images.length%>;
+    
+    if (adImgs > 0) {
+        document.addEventListener('DOMContentLoaded', function () {
+            new Splide('#splide').mount();
+        });
+    }
 </script>
 
 <script src="../../public/js/imgModal.js"></script>

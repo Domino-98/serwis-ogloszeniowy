@@ -133,7 +133,7 @@ body {
 .navbar {
   width: 100%;
   background-color: #ef233c;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   position: fixed;
   z-index: 10;
   display: flex;
@@ -283,6 +283,8 @@ body {
   .nav__dropdown {
     position: absolute;
     display: flex;
+    transform: scaleY(0);
+    overflow: hidden;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -294,7 +296,8 @@ body {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
     visibility: hidden;
     opacity: 0;
-    transition: all .3s ease-in-out; }
+    transform-origin: top;
+    transition: all 0.35s ease; }
     .nav__dropdown-link {
       text-decoration: none;
       color: #e4e4e4;
@@ -307,6 +310,7 @@ body {
         background-color: #ef233c; }
 
 .show {
+  transform: scaleY(1);
   visibility: visible;
   opacity: 1; }
 
@@ -753,7 +757,7 @@ input[type=file]::file-selector-button:hover {
       color: #ef233c;
       border-right: 1px solid #ef233c; }
     .user__input::placeholder {
-      color: #333; }
+      color: #777; }
 
 .contact {
   background-color: #fff;
@@ -802,6 +806,9 @@ input[type=file]::file-selector-button:hover {
 
 .no-img {
   width: 60%; }
+  @media only screen and (max-width: 50em) {
+    .no-img {
+      margin-bottom: 5rem; } }
 
 .modal {
   display: none;
@@ -837,12 +844,11 @@ input[type=file]::file-selector-button:hover {
     position: relative;
     animation-name: fade;
     animation-duration: 0.3s; }
-
-@media only screen and (max-width: 50em) {
-  .modal__img {
-    width: 100%; }
-  .modal__close {
-    right: 10%; } }
+  @media only screen and (max-width: 50em) {
+    .modal__img {
+      width: 100%; }
+    .modal__close {
+      right: 15%; } }
 
 @keyframes fade {
   from {
@@ -857,7 +863,8 @@ input[type=file]::file-selector-button:hover {
   min-height: 100vh; }
 
 .header {
-  background-image: linear-gradient(180deg, #ffffff 0%, #ebebeb 74%);
+  background-image: url("../../public/images/cool-background.png");
+  background-position: center;
   width: 100%;
   display: flex;
   flex-direction: column;

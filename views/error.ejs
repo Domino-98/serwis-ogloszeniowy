@@ -2,5 +2,7 @@
 
 <div class="error-alert">
     <h3 class="error-alert__title"><%=err.message%></h3>
+    <% if (process.env.NODE_ENV !== "production") { %>
     <p class="error-alert__text"><%=err.stack%></p>
+    <% } %>
 </div>
