@@ -18,6 +18,7 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
+const MongoDBStore = require('connect-mongo')(session);
 
 const ads = require('./routes/ads');
 const users = require('./routes/users');
@@ -26,6 +27,8 @@ const myAds = require('./routes/my-ads');
 
 app.use(express.json());
 
+// 'mongodb://localhost:27017/serwis-ogloszeniowy'
+const dbUrl = process.env.DB_URL;
 mongoose.connect('mongodb://localhost:27017/serwis-ogloszeniowy', {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -50,9 +53,20 @@ app.use('/public', express.static('public'));
 app.use('/node_modules', express.static('node_modules'));
 app.use(mongoSanitize());
 
+const store = new MongoDBStore({
+    url: 'mongodb://localhost:27017/serwis-ogloszeniowy',
+    secret: process.env.SESSION_SECRET,
+    touchAfter: 24 * 60 * 60
+});
+
+store.on('error', function(e) {
+    console.log('Session store error', e);
+});
+
 const sessionConfig = {
+    store,
     name: 'session',
-    secret: 'key that will sign cookie',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     
