@@ -6,7 +6,6 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const path = require('path');
-const mongoSanitize = require('express-mongo-sanitize');
 const favicon = require('serve-favicon');
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
@@ -17,6 +16,8 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
+const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet');
 
 const ads = require('./routes/ads');
 const users = require('./routes/users');
@@ -50,18 +51,22 @@ app.use('/node_modules', express.static('node_modules'));
 app.use(mongoSanitize());
 
 const sessionConfig = {
-    secret: 'secret',
+    name: 'session',
+    secret: 'key that will sign cookie',
     resave: false,
     saveUninitialized: true,
+    
     cookie: {
         httpOnly: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-        maxAge:  1000 * 60 * 60 * 24 * 7
+        maxAge:  1000 * 60 * 60 * 24 * 7,
     }
 }
 
 app.use(session(sessionConfig));
 app.use(flash());
+app.use(helmet({ contentSecurityPolicy: false }));
+
 
 app.use(passport.initialize());
 app.use(passport.session());
