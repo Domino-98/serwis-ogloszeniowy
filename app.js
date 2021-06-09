@@ -6,6 +6,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const path = require('path');
+const mongoSanitize = require('express-mongo-sanitize');
 const favicon = require('serve-favicon');
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
@@ -46,6 +47,7 @@ app.use(methodOverride('_method'));
 app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 app.use('/public', express.static('public'));
 app.use('/node_modules', express.static('node_modules'));
+app.use(mongoSanitize());
 
 const sessionConfig = {
     secret: 'secret',
