@@ -4,7 +4,6 @@ if (process.env.NODE_ENV !== "production") {
 
 const express = require('express');
 const app = express();
-const port = 3000;
 const path = require('path');
 const favicon = require('serve-favicon');
 const mongoose = require('mongoose');
@@ -54,7 +53,7 @@ app.use('/node_modules', express.static('node_modules'));
 app.use(mongoSanitize());
 
 const store = new MongoDBStore({
-    url: 'mongodb://localhost:27017/serwis-ogloszeniowy',
+    url: dbUrl,
     secret: process.env.SESSION_SECRET || 'session secret key',
     touchAfter: 24 * 60 * 60
 });
@@ -113,6 +112,8 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err });
 });
 
-app.listen(3000, () => {
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
     console.log(`Serving on port ${port}`);
 });

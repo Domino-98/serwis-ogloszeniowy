@@ -1,7 +1,9 @@
 {
+  "name": "serwis-ogloszeniowy",
   "main": "app.js",
   "scripts": {
-    "sass": "node-sass sass/main.scss public/css/style.css -w"
+    "sass": "node-sass sass/main.scss public/css/style.css -w",
+    "start": "node app.js"
   },
   "dependencies": {
     "@splidejs/splide": "^2.4.21",
