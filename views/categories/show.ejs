@@ -51,7 +51,7 @@
     <% }); %>
 </main>
 
-<% if (categoryAds.totalDocs > 9) { %>
+    <% if (categoryAds.totalDocs > 12) { %>
     <div class="pagination">
         <% if (!(categoryAds.hasPrevPage)) { categoryAds.prevPage = 1 } %><a  class="pagination__btn previous" href="/category/<%=category.name%>?page=<%=categoryAds.prevPage%>#ads"><i class="fas fa-angle-left"></i></a>
         <% if (categoryAds.page == 1) { %>  <% } else { %><a class="pagination__btn" href="/category/<%=category.name%>?page=1#ads">1</a><% } %>

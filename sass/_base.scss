@@ -8,6 +8,7 @@ $color-grey-light-2: #aaa;
 $color-grey-dark-1: #777;
 $color-grey-dark-2: #333;
 
+
 $bp-largest: 75em; // 1200px / 16
 $bp-large: 68.75em; // 1100px
 $bp-medium: 50em; // 800px
@@ -33,7 +34,7 @@ html {
     }
 
     @media only screen and (max-width: $bp-large) {
-        font-size: 50%; // 1rem = 9px
+        font-size: 50%; // 1rem = 8px
     }
 }
 

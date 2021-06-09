@@ -173,7 +173,7 @@
 
     </main>
 
-    <% if (ads.totalDocs > 9) { %>
+    <% if (ads.totalDocs > 12) { %>
     <div class="pagination">
         <% if (!(ads.hasPrevPage)) { ads.prevPage = 1 } %><a  class="pagination__btn previous" href="/?page=<%=ads.prevPage%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><i class="fas fa-angle-left"></i></a>
         <% if (ads.page == 1) { %>  <% } else { %><a class="pagination__btn" href="/?page=1<% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads">1</a><% } %>
