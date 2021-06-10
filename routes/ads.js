@@ -156,7 +156,10 @@ router.put('/:id', isLoggedIn, isAuthor, upload.array('image'), validateAd, catc
 }));
 
 router.delete('/:id', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
-    await Ad.findByIdAndDelete(req.params.id);
+    const ad = await Ad.findByIdAndDelete(req.params.id);
+    for (let image of ad.images) {
+        await cloudinary.uploader.destroy(image.filename);
+    }
     req.flash('success', 'Pomyślnie usunięto ogłoszenie!')
     res.redirect('/');
 }));
