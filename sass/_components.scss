@@ -28,9 +28,9 @@
     }
 
     &__icon {
-        font-size: 5rem;
         padding-bottom: 1rem;
-        color: #14213d;
+        font-size: 5rem;
+        color: $color-primary-dark;
         text-shadow: 0 0 5px rgba(0, 0, 0, .5);
 
         &--free {
@@ -47,14 +47,14 @@
 }
 
 .ad {
+    display: flex;
+    flex-direction: column;
+    width: calc(25% - 2rem);
     margin: 2rem 1rem;
     background-color: #fff;
     padding: 1rem;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-    width: calc(25% - 2rem);
     border-radius: 1rem;
-    display: flex;
-    flex-direction: column;
 
     @media only screen and (max-width: $bp-large) {
         width: calc(33% - 2rem);
@@ -69,11 +69,11 @@
     }
 
     &__title {
+        white-space: nowrap;
+        overflow: hidden;
         font-size: 2rem;
         font-weight: 700;
         text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
 
         &:link,
         &:visited {
@@ -89,9 +89,9 @@
     }
 
     &__location {
+        margin-right: .5rem;
         font-size: 1.2rem;
         color: $color-grey-dark-2;
-        margin-right: .5rem;
 
         &-icon {
             font-size: 1.6rem;
@@ -148,24 +148,24 @@
     }
 
     &__creation-date {
+        margin: 1rem 0;
         font-size: 1.2rem;
         color: $color-grey-dark-1;
-        margin: 1rem 0;
     }
 }
 
 .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
+    height: 8rem;
+    top: 0;
     background-color: $color-secondary;
     box-shadow: 0 0 10px rgba(0, 0, 0, .7);
     position: fixed;
     z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     transition: top .5s;
-    height: 8rem;
-    top: 0;
 
     &__logo-wrapper {
         display: flex;
@@ -217,8 +217,8 @@
 
     &__search {
         display: flex;
-        flex: 0 0 33.33%;
         justify-content: center;
+        flex: 0 0 33.33%;
 
         @media only screen and (max-width: $bp-small) {
             display: none;
@@ -226,8 +226,8 @@
     }
 
     &__search-input {
-        margin-right: 2rem;
         width: 80%;
+        margin-right: 2rem;
         padding: 1rem 5rem 1rem 2.5rem;
         border-radius: 10rem;
         transition: all .3s;
@@ -260,7 +260,6 @@
         font-size: 2rem;
         color: $color-grey-dark-1;
 
-
         &:focus {
             outline: none;
         }
@@ -278,7 +277,6 @@
             justify-content: center;
         }
     }
-
 }
 
 .nav {
@@ -302,6 +300,11 @@
     }
 
     &__user {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 5rem;
+        height: 5rem;
         background-color: #fff;
         font-size: 2rem;
         background-color: #fff;
@@ -309,40 +312,32 @@
         border-radius: 50%;
         text-decoration: none;
         color: $color-primary-dark;
-        width: 5rem;
-        height: 5rem;
         cursor: pointer;
         margin-right: 4rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         transition: all .2s;
 
         @media only screen and (max-width: $bp-medium) {
-
             margin-right: 2rem;
         }
-
 
         &:hover,
         &:focus {
             color: $color-grey-light-1;
-            background-color: #14213d;
+            background-color: $color-primary-dark;
             transform: scale(1.2);
         }
     }
 
     &__link {
         display: inline-block;
+        padding: 0.75rem 1.5rem;
         font-size: 1.75rem;
         background-color: #fff;
         box-shadow: 0 0 5px rgb(0, 0, 0);
         border-radius: 2rem;
         text-decoration: none;
         color: #000;
-        padding: 0.75rem 1.5rem;
         transition: all .2s;
-
 
         @media only screen and (max-width: $bp-medium) {
             font-size: 1.5rem;
@@ -352,7 +347,7 @@
         &:hover,
         &:focus {
             color: $color-grey-light-1;
-            background-color: #14213d;
+            background-color: $color-primary-dark;
             transform: scale(1.1);
         }
     }
@@ -360,15 +355,15 @@
     &__dropdown {
         position: absolute;
         display: flex;
-        transform: scaleY(0);
-        overflow: hidden;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        padding: 1rem;
+        width: 20rem;
         top: 6.5rem;
         right: 0;
-        width: 20rem;
+        transform: scaleY(0);
+        overflow: hidden;
+        padding: 1rem;
         background-color: $color-primary-dark;
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
         visibility: hidden;
@@ -376,13 +371,12 @@
         transform-origin: top;
         transition: all 0.35s ease;
 
-
         &-link {
+            width: 100%;
+            padding: 1rem 0;
             text-decoration: none;
             color: $color-grey-light-1;
             font-size: 1.6rem;
-            padding: 1rem 0;
-            width: 100%;
             text-align: center;
             transition: all .3s;
 
@@ -401,16 +395,16 @@
 
 .active-icon {
     color: $color-grey-light-1;
-    background-color: #14213d;
+    background-color: $color-primary-dark;
     transform: scale(1.2);
 }
 
 .new-ad {
-    margin-top: 13rem;
     display: flex;
     flex-direction: column;
     width: 100%;
     max-width: 50rem;
+    margin-top: 13rem;
 
     @media only screen and (max-width: $bp-small) {
         margin-top: 0;
@@ -436,9 +430,9 @@
         }
 
         &-thumbnail {
-            border: 1px solid $color-grey-dark-1;
             width: 12rem;
             height: 8rem;
+            border: 1px solid $color-grey-dark-1;
             margin: 1rem .5rem;
         }
 
@@ -447,21 +441,21 @@
             align-items: center;
 
             &-label {
-                font-size: 1.5rem;
                 margin-right: 1rem;
+                font-size: 1.5rem;
             }
         }
     }
 
     &__select {
-        font-family: inherit;
+        width: 100%;
         padding: 1rem 1rem 1rem 0.5rem;
+        margin-top: -1.5rem;
+        font-family: inherit;
         border: none;
         box-shadow: 0 0 5px rgba(0, 0, 0, .5);
-        width: 100%;
         border-radius: 1rem;
         appearance: none;
-        margin-top: -1.5rem;
         border: 1px solid $color-grey-light-1;
 
         &:focus {
@@ -472,32 +466,32 @@
     }
 
     &__group {
-        position: relative;
-        margin-top: 1.5rem;
-        margin-bottom: 4rem;
         display: flex;
         flex-direction: column;
         align-items: center;
+        position: relative;
+        margin-top: 1.5rem;
+        margin-bottom: 4rem;
     }
 
     &__label {
-        font-size: 2rem;
         position: absolute;
         top: .5rem;
         left: 1.5rem;
+        font-size: 2rem;
         color: $color-grey-dark-1;
         pointer-events: none;
         transition: all .3s ease;
     }
-
+ 
     &__input {
+        width: 100%;
         padding: 1rem 2rem;
         border-radius: 1rem;
         border: none;
         font-size: 1.6rem;
         transition: all .3s;
         font-family: inherit;
-        width: 100%;
         box-shadow: 0 0 5px rgba(0, 0, 0, .5);
         border: 1px solid $color-grey-light-1;
 
@@ -526,13 +520,13 @@
 }
 
 input[type=file]::file-selector-button {
-    border: 2px solid $color-primary-dark;
+    margin: 1rem 1rem;
     padding: 1rem 2rem;
+    border: 2px solid $color-primary-dark;
     border-radius: .2em;
     background-color: $color-primary-dark;
     color: #fff;
     transition: .5s;
-    margin: 1rem 1rem;
     font-size: 1.5rem;
 }
 
@@ -550,9 +544,9 @@ input[type=file]::file-selector-button:hover {
 .card {
     display: flex;
     align-items: center;
-    background-color: #fff;
     padding: 2rem;
     margin-top: 16rem;
+    background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
     border-radius: 1rem;
     word-break: break-all;
@@ -570,17 +564,17 @@ input[type=file]::file-selector-button:hover {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        align-self: stretch;
         max-width: 25rem;
+        align-self: stretch;
         margin-left: 4rem;
         color: $color-grey-dark-2;
         word-break: break-word;
 
         @media only screen and (max-width: $bp-medium) {
-            margin-left: 1rem;
-            position: relative;
             width: 100%;
             max-width: 80%;
+            position: relative;
+            margin-left: 1rem;
         }
     }
 
@@ -609,29 +603,29 @@ input[type=file]::file-selector-button:hover {
     }
 
     &__title {
+        width: 100%;
         font-size: 2.5rem;
         line-height: 3.25rem;
-        width: 100%;
         color: #000;
     }
 
     &__price {
-        font-size: 1.8rem;
         margin: 1rem 0;
+        font-size: 1.8rem;
 
         &-icon {
-            font-size: 2.2rem;
             margin-right: 1rem;
+            font-size: 2.2rem;
         }
     }
 
     &__contact {
-        font-size: 1.8rem;
         margin: 1rem 0;
+        font-size: 1.8rem;
 
         &-icon {
-            font-size: 2.2rem;
             margin-right: 1rem;
+            font-size: 2.2rem;
         }
 
         &-text {
@@ -641,24 +635,24 @@ input[type=file]::file-selector-button:hover {
     }
 
     &__phone {
+        margin: 1rem 0;
         font-size: 1.8rem;
         cursor: pointer;
         color: $color-secondary;
-        margin: 1rem 0;
 
         &-icon {
-            font-size: 2.2rem;
             margin-right: 1rem;
+            font-size: 2.2rem;
         }
     }
 
     &__location {
-        font-size: 1.8rem;
         margin: 1rem 0;
+        font-size: 1.8rem;
 
         &-icon {
-            font-size: 2.2rem;
             margin-right: 1rem;
+            font-size: 2.2rem;
         }
     }
 
@@ -675,13 +669,13 @@ input[type=file]::file-selector-button:hover {
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    background-color: #fff;
-    padding: 2rem;
-    margin-top: 2rem;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-    border-radius: 1rem;
     width: 100%;
     max-width: 100rem;
+    padding: 2rem;
+    margin-top: 2rem;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    border-radius: 1rem;
     word-break: break-all;
 
     &__title {
@@ -689,43 +683,43 @@ input[type=file]::file-selector-button:hover {
     }
 
     &__text {
-        font-size: 1.5rem;
         align-self: start;
         padding: 1rem 0 2rem 0;
+        font-size: 1.5rem;
         white-space: pre-line;
         color: $color-grey-dark-2;
     }
 
     &__buttons {
-        margin-top: 3rem;
         display: flex;
-        width: 100%;
         align-items: center;
         justify-content: space-between;
+        width: 100%;
+        margin-top: 3rem;
     }
 }
 
 .btn {
+    display: block;
     border: none;
-    font-size: 1.6rem;
+    margin: 0 auto;
     padding: 1.5rem 3rem;
     background-color: $color-primary-dark;
+    font-size: 1.6rem;
     color: $color-grey-light-1;
     border-radius: 1rem;
     cursor: pointer;
     transition: all .2s;
-    display: block;
-    margin: 0 auto;
     text-decoration: none;
     font-family: inherit;
 
     &--small {
-        font-size: 1.3rem;
         padding: 1rem 2.5rem;
+        font-size: 1.3rem;
 
         @media only screen and (max-width: $bp-smallest) {
-            font-size: 1.1rem;
             padding: .75rem 1.5rem;
+            font-size: 1.1rem;
         }
     }
 
@@ -753,13 +747,13 @@ input[type=file]::file-selector-button:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    max-width: 50rem;
+    margin-top: 15rem;
+    padding: 1.5rem;
     background-color: #fdb3b3;
     color: #810000;
-    padding: 1.5rem;
     border-radius: 1rem;
-    max-width: 50rem;
     box-shadow: 0 0 5px rgba(0, 0, 0, .5);
-    margin-top: 15rem;
 
     &__title {
         align-self: start;
@@ -783,7 +777,6 @@ input[type=file]::file-selector-button:hover {
     font-size: 3rem;
     letter-spacing: 1px;
     word-spacing: .5rem;
-
 }
 
 @media only screen and (max-width: $bp-small) {
@@ -804,8 +797,8 @@ input[type=file]::file-selector-button:hover {
 
 .flash {
     position: fixed;
-    margin: 0 auto;
     bottom: 5%;
+    margin: 0 auto;
     z-index: 10;
 
     &.fade-out {
@@ -864,7 +857,6 @@ input[type=file]::file-selector-button:hover {
     }
 }
 
-
 .pagination {
     display: flex;
     align-items: center;
@@ -878,12 +870,12 @@ input[type=file]::file-selector-button:hover {
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 2rem;
         width: 4.5rem;
         height: 4.5rem;
+        font-size: 2rem;
+        margin: 0 .5rem;
         padding: .8rem 1.6rem;
         border-radius: 50%;
-        margin: 0 5px;
         text-decoration: none;
         color: $color-secondary;
         background-color: #fff;
@@ -898,7 +890,6 @@ input[type=file]::file-selector-button:hover {
             & i {
                 font-size: 1.6rem;
             }
-
         }
 
         &.active {
@@ -914,19 +905,18 @@ input[type=file]::file-selector-button:hover {
 }
 
 .user {
-    margin-top: 15rem;
     display: flex;
     flex-direction: column;
     width: 100%;
     max-width: 40rem;
+    margin-top: 15rem;
     background-color: #fff;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     border-radius: 1rem;
-
     
     @media only screen and (max-width: $bp-small) {
-        margin-top: 4rem;
         width: 80%;
+        margin-top: 4rem;
     }
 
     &__select {
@@ -938,11 +928,11 @@ input[type=file]::file-selector-button:hover {
 
     &__select-login,
     &__select-register {
+        display: flex;
+        justify-content: center;
         padding-bottom: .5rem;
         flex: 0 0 50%;
         border-bottom: 3px solid $color-grey-light-2;
-        display: flex;
-        justify-content: center;
         text-decoration: none;
         color: $color-grey-light-2;
         text-transform: uppercase;
@@ -976,11 +966,11 @@ input[type=file]::file-selector-button:hover {
     }
 
     &__icon {
-        font-size: 1.5rem;
-        z-index: 1;
         position: absolute;
         left: 1.5rem;
         padding-right: 1.25rem;
+        z-index: 1;
+        font-size: 1.5rem;
         line-height: 3rem;
         border-right: 1px solid #ccc;
         color: $color-grey-dark-1;
@@ -1008,6 +998,15 @@ input[type=file]::file-selector-button:hover {
             border-right: 1px solid $color-secondary;
         }
 
+        &::-webkit-input-placeholder {
+            color: $color-grey-dark-1;
+        }
+
+        &::-moz-placeholder { 
+            color: $color-grey-dark-1;
+            opacity: 1
+        }
+
         &::placeholder {
             color: $color-grey-dark-1;
         }
@@ -1015,12 +1014,12 @@ input[type=file]::file-selector-button:hover {
 }
 
 .contact {
-    background-color: #fff;
+    width: 50%;
     padding: 3rem;
     margin-top: 8rem;
+    background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
     border-radius: 1rem;
-    width: 50%;
 
     @media only screen and (max-width: $bp-small) {
         width: 100%;
@@ -1033,7 +1032,6 @@ input[type=file]::file-selector-button:hover {
         }
 
         &__input {
-            padding: 1rem 2rem;
             width: 100%;
             padding: 1rem;
             font-family: inherit;
@@ -1066,9 +1064,9 @@ input[type=file]::file-selector-button:hover {
 }
 
 .img {
-    cursor: zoom-in;
     height: 100%;
     width: 100%;
+    cursor: zoom-in;
     object-fit: cover;
 }
 
@@ -1083,12 +1081,12 @@ input[type=file]::file-selector-button:hover {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
-    padding-top: 10rem;
-    left: 0;
-    top: 0;
     width: 100%;
     height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    padding-top: 10rem;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.7);
     animation-name: fade;
@@ -1099,7 +1097,7 @@ input[type=file]::file-selector-button:hover {
         top: 15%;
         right: 30%;
         color: #f1f1f1;
-        font-size: 40px;
+        font-size: 3.5rem;
         font-weight: bold;
         z-index: 2;
         transition: .3s;
@@ -1112,16 +1110,15 @@ input[type=file]::file-selector-button:hover {
     }
 
     &__img {
-        margin: auto;
         display: block;
-        width: 50%;
-        height: auto;
-        max-width: 70rem;
         position: relative;
+        width: 50%;
+        max-width: 70rem;
+        height: auto;
+        margin: auto;
         animation-name: fade;
         animation-duration: 0.3s;
     }
-
     
     @media only screen and (max-width: $bp-medium) {
         &__img {
@@ -1130,6 +1127,7 @@ input[type=file]::file-selector-button:hover {
 
         &__close {
             right: 15%;
+            top: 12.5%;
         }
     }
 }
