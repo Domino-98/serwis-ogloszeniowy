@@ -3,45 +3,47 @@
 <h1 class="heading-1 u-center-text u-margin-top-huge" id="ads">Obserwowane</h1>
 
 <main class="main u-margin-top">
-    
+
     <% if (userWatchedAds.watchedAds.length == 0) { %>
         <p class="no-category-alert">Brak obserwowanych ogłoszeń</p>
     <% } %>
 
-    <% userWatchedAds.watchedAds.forEach(ad => { %>
-    <section class="ad">
-        <a class="ad__image-link" href="../<%=ad._id%>">
-            <% if (ad.images.length > 0) { %>
-            <img src="<%=ad.images[0].url%>" alt="Image" class="ad__image">
-            <% } else { %>
-            <img src="../../public/images/no-image.jpg" alt="Image" class="ad__image-none"> 
-            <% } %>
-        </a>
+	<section class="section">
+		<% userWatchedAds.watchedAds.forEach(ad => { %>
+			<div class="ad">
+				<a class="ad__image-link" href="../<%=ad._id%>">
+					<% if (ad.images.length > 0) { %>
+					<img src="<%=ad.images[0].url%>" alt="Image" class="ad__image">
+					<% } else { %>
+					<img src="../../public/images/no-image.jpg" alt="Image" class="ad__image-none">
+					<% } %>
+				</a>
 
-        <a href="../<%=ad._id%>" class="ad__title u-margin-top-small"><%= ad.title %></a>
+				<a href="../<%=ad._id%>" class="ad__title u-margin-top-small"><%= ad.title %></a>
 
-        <%  
-            const date = new Date(ad.updatedAt) 
-            const updatedAt = date.getFullYear()+'-' + (date.getMonth()<10?'0':'') + (date.getMonth()+1) + '-'+ (date.getDate()<10?'0':'') + date.getDate() + ' ' + date.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes();
-        %>
-      
-        <div class="ad__date-location">
-            <div class="ad__location">
-                <i class="fas fa-map-marker-alt ad__location-icon"></i>
-                <span class="ad__location-text"><%=ad.location%></span>
-            </div>
-            <p class="ad__creation-date"><%=updatedAt%></p>
-        </div>
+				<%
+					const date = new Date(ad.updatedAt)
+					const updatedAt = date.getFullYear()+'-' + (date.getMonth()<10?'0':'') + (date.getMonth()+1) + '-'+ (date.getDate()<10?'0':'') + date.getDate() + ' ' + date.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes();
+				%>
 
-        <div class="ad__price-observe">
-            <span class="ad__price"><%=ad.price%> zł</span>
-            <% if (!currentUser) { %>
-                <a class="ad__observe-icon to-remove" href="/watched/<%=ad._id%>/remove"><i title="Usuń z obserwowanych" class="far fa-star"></i></a>
-            <% } else if (currentUser._id.toString() != ad.author._id) { %>
-                <a class="ad__observe-icon to-remove" href="/watched/<%=ad._id%>/remove"><i title="Usuń z obserwowanych" class="far fa-star"></i></a>
-            <% } %>
-        </div>
-    </section>
-    <% }); %>
+				<div class="ad__date-location">
+					<div class="ad__location">
+						<i class="fas fa-map-marker-alt ad__location-icon"></i>
+						<span class="ad__location-text"><%=ad.location%></span>
+					</div>
+					<p class="ad__creation-date"><%=updatedAt%></p>
+				</div>
+
+				<div class="ad__price-observe">
+					<span class="ad__price"><%=ad.price%> zł</span>
+					<% if (!currentUser) { %>
+						<a class="ad__observe-icon to-remove" href="/watched/<%=ad._id%>/remove"><i title="Usuń z obserwowanych" class="far fa-star"></i></a>
+					<% } else if (currentUser._id.toString() != ad.author._id) { %>
+						<a class="ad__observe-icon to-remove" href="/watched/<%=ad._id%>/remove"><i title="Usuń z obserwowanych" class="far fa-star"></i></a>
+					<% } %>
+				</div>
+			</div>
+		<% }); %>
+	</section>
 
 </main>

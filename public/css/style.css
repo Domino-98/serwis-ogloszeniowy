@@ -885,6 +885,13 @@ input[type=file]::file-selector-button:hover {
 
 .main {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%; }
+
+.section {
+  display: flex;
   flex-wrap: wrap;
   width: 75%; }
 

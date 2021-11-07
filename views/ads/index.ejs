@@ -11,84 +11,84 @@
                    <span href="/category/Motoryzacja" class="categories__text">Motoryzacja</span>
                 </a>
             </div>
-   
+
            <div class="categories__item">
                  <a href="/category/Elektronika"  class="categories__link">
                    <i class="fas fa-laptop categories__icon"></i>
                    <span href="/category/Elektronika"  class="categories__text">Elektronika</span>
                  </a>
            </div>
-   
+
            <div class="categories__item">
                <a href="/category/Zwierzęta" class="categories__link">
                    <i class="fas fa-paw categories__icon"></i>
-                   <span href="/category/Zwierzeta" class="categories__text">Zwierzęta</span>    
+                   <span href="/category/Zwierzeta" class="categories__text">Zwierzęta</span>
                </a>
            </div>
-   
+
            <div class="categories__item">
                <a href="/category/Rolnictwo" class="categories__link">
                    <i class="fas fa-tractor categories__icon"></i>
-                   <span href="/category/Rolnictwo" class="categories__text">Rolnictwo</span>    
+                   <span href="/category/Rolnictwo" class="categories__text">Rolnictwo</span>
                </a>
            </div>
-   
+
            <div class="categories__item">
                <a href="/category/Rozrywka i Rekreacja" class="categories__link">
                    <i class="fas fa-bicycle categories__icon"></i>
                    <span href="/category/Rozrywka i Rekreacja" class="categories__text">Rozrywka i Rekreacja</span>
                </a>
            </div>
-   
+
            <div class="categories__item">
                <a href="/category/Dla dzieci" class="categories__link">
                    <i class="fas fa-baby-carriage categories__icon"></i>
                    <span href="/category/Dla dzieci" class="categories__text">Dla dzieci</span>
                </a>
            </div>
-   
+
            <div class="categories__item">
                <a href="/category/Nieruchomości" class="categories__link">
                    <i class="fas fa-home categories__icon"></i>
                    <span href="/category/Nieruchomości" class="categories__text">Nieruchomości</span>
                </a>
            </div>
-   
+
            <div class="categories__item">
                <a href="/category/Usługi" class="categories__link">
                    <i class="fas fa-brush categories__icon"></i>
                    <span href="/category/Usługi" class="categories__text">Usługi</span>
                </a>
            </div>
-   
+
            <div class="categories__item">
                <a href="/category/Muzyka" class="categories__link">
                    <i class="fas fa-music categories__icon"></i>
                    <span href="/category/Muzyka" class="categories__text">Muzyka</span>
                </a>
            </div>
-   
+
            <div class="categories__item">
             <a href="/category/Praca" class="categories__link">
                 <i class="fas fa-briefcase categories__icon"></i>
                 <span href="/category/Praca" class="categories__text">Praca</span>
             </a>
         </div>
-           
+
         <div class="categories__item">
             <a href="/category/Moda" class="categories__link">
                 <i class="fas fa-tshirt categories__icon"></i>
                 <span href="/category/Moda" class="categories__text">Moda</span>
             </a>
         </div>
-           
+
         <div class="categories__item">
             <a href="/category/Dom i Ogród" class="categories__link">
                 <i class="fas fa-couch categories__icon"></i>
                 <span href="/category/Dom i Ogród" class="categories__text">Dom i Ogród</span>
             </a>
         </div>
-           
+
         <div class="categories__item">
             <a href="/category/Zdrowie i Uroda" class="categories__link">
                 <i class="fas fa-heartbeat categories__icon"></i>
@@ -121,7 +121,7 @@
     </header>
 
 
-    <% if (!searchQuery) { %> 
+    <% if (!searchQuery) { %>
     <h1 class="heading-1 u-center-text u-margin-top-big" id="ads">Wszystkie ogłoszenia</h1>
     <% } else { %>
         <h1 class="heading-1 u-center-text u-margin-top-big" id="ads">Znaleziono <%=adsCount%> <%=resultText%></h1>
@@ -133,54 +133,54 @@
             <p class="no-category-alert">Brak ogłoszeń</p>
         <% } %>
 
-        <% ads.docs.forEach(ad => { %>
-        <section class="ad">
+		<section class="section">
+			<% ads.docs.forEach(ad => { %>
+			<div class="ad">
+				<a class="ad__image-link" href="../<%=ad._id%>">
+					<% if (ad.images.length > 0) { %>
+					<img src="<%=ad.images[0].url%>" alt="Image" class="ad__image">
+					<% } else { %>
+					<img src="../../public/images/no-image.jpg" alt="Image" class="ad__image-none">
+					<% } %>
+				</a>
 
-            <a class="ad__image-link" href="../<%=ad._id%>">
-                <% if (ad.images.length > 0) { %>
-                <img src="<%=ad.images[0].url%>" alt="Image" class="ad__image">
-                <% } else { %>
-                <img src="../../public/images/no-image.jpg" alt="Image" class="ad__image-none"> 
-                <% } %>
-            </a>
+				<a href="../<%=ad._id%>" class="ad__title u-margin-top-small"><%= ad.title %></a>
 
-            <a href="../<%=ad._id%>" class="ad__title u-margin-top-small"><%= ad.title %></a>
+				<%
+					const date = new Date(ad.updatedAt)
+					const updatedAt = date.getFullYear()+'-' + (date.getMonth()<10?'0':'') + (date.getMonth()+1) + '-'+ (date.getDate()<10?'0':'') + date.getDate() + ' ' + date.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes();
+				%>
 
-            <%  
-                const date = new Date(ad.updatedAt) 
-                const updatedAt = date.getFullYear()+'-' + (date.getMonth()<10?'0':'') + (date.getMonth()+1) + '-'+ (date.getDate()<10?'0':'') + date.getDate() + ' ' + date.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes();
-            %>
-            
-            <div class="ad__date-location">
-                <div class="ad__location">
-                    <i class="fas fa-map-marker-alt ad__location-icon"></i>
-                    <span class="ad__location-text"><%=ad.location%></span>
-                </div>
-                <p class="ad__creation-date"><%=updatedAt%></p>
-            </div>
+				<div class="ad__date-location">
+					<div class="ad__location">
+						<i class="fas fa-map-marker-alt ad__location-icon"></i>
+						<span class="ad__location-text"><%=ad.location%></span>
+					</div>
+					<p class="ad__creation-date"><%=updatedAt%></p>
+				</div>
 
-            <div class="ad__price-observe">
-                <span class="ad__price"><%=ad.price%> zł</span>
-                <% if (!currentUser) { %>
-                    <a class="ad__observe-icon" href="/watched/<%=ad._id%>/add"><i title="Dodaj do obserwowanych" class="far fa-star"></i></a>
-                <% } else if (currentUser._id.toString() != ad.author) { %>
-                    <a class="ad__observe-icon" href="/watched/<%=ad._id%>/add"><i title="Dodaj do obserwowanych" class="far fa-star"></i></a>
-                <% } %>
-            </div>
-        </section>
-        <% }); %>
+				<div class="ad__price-observe">
+					<span class="ad__price"><%=ad.price%> zł</span>
+					<% if (!currentUser) { %>
+						<a class="ad__observe-icon" href="/watched/<%=ad._id%>/add"><i title="Dodaj do obserwowanych" class="far fa-star"></i></a>
+					<% } else if (currentUser._id.toString() != ad.author) { %>
+						<a class="ad__observe-icon" href="/watched/<%=ad._id%>/add"><i title="Dodaj do obserwowanych" class="far fa-star"></i></a>
+					<% } %>
+				</div>
+			</div>
+			<% }); %>
+		</section>
 
+		<% if (ads.totalDocs > 12) { %>
+	    <div class="pagination">
+	        <% if (!(ads.hasPrevPage)) { ads.prevPage = 1 } %><a  class="pagination__btn previous" href="/?page=<%=ads.prevPage%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><i class="fas fa-angle-left"></i></a>
+	        <% if (ads.page == 1) { %>  <% } else { %><a class="pagination__btn" href="/?page=1<% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads">1</a><% } %>
+	        <% if (!(ads.hasPrevPage) || ads.prevPage == 1) {  %>  <% } else { %><a  class="pagination__btn" href="/?page=<%=ads.prevPage%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><%=ads.prevPage%></a><% } %>
+	        <a  class="pagination__btn active" href="/?page=<%=ads.page%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><%=ads.page%></a>
+	        <% if (!(ads.hasNextPage) || ads.nextPage == ads.totalPages) {  %>  <% } else { %><a  class="pagination__btn" href="/?page=<%=ads.nextPage%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><%=ads.nextPage%></a><% } %>
+	        <% if (ads.page == ads.totalPages) { %>  <% } else { %> <a  class="pagination__btn" href="/?page=<%=ads.totalPages%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><%=ads.totalPages%></a><% } %>
+	        <% if (!(ads.hasNextPage)) { ads.nextPage = ads.totalPages } %> <a  class="pagination__btn next" href="/?page=<%=ads.nextPage%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><i class="fas fa-angle-right"></i></a>
+	    </div>
+	    <% } %>
 
     </main>
-
-    <% if (ads.totalDocs > 12) { %>
-    <div class="pagination">
-        <% if (!(ads.hasPrevPage)) { ads.prevPage = 1 } %><a  class="pagination__btn previous" href="/?page=<%=ads.prevPage%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><i class="fas fa-angle-left"></i></a>
-        <% if (ads.page == 1) { %>  <% } else { %><a class="pagination__btn" href="/?page=1<% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads">1</a><% } %>
-        <% if (!(ads.hasPrevPage) || ads.prevPage == 1) {  %>  <% } else { %><a  class="pagination__btn" href="/?page=<%=ads.prevPage%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><%=ads.prevPage%></a><% } %>
-        <a  class="pagination__btn active" href="/?page=<%=ads.page%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><%=ads.page%></a>
-        <% if (!(ads.hasNextPage) || ads.nextPage == ads.totalPages) {  %>  <% } else { %><a  class="pagination__btn" href="/?page=<%=ads.nextPage%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><%=ads.nextPage%></a><% } %>
-        <% if (ads.page == ads.totalPages) { %>  <% } else { %> <a  class="pagination__btn" href="/?page=<%=ads.totalPages%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><%=ads.totalPages%></a><% } %>
-        <% if (!(ads.hasNextPage)) { ads.nextPage = ads.totalPages } %> <a  class="pagination__btn next" href="/?page=<%=ads.nextPage%><% if (searchQuery) { %>&search=<%=searchQuery%><% } %>#ads"><i class="fas fa-angle-right"></i></a>
-    </div>    
-    <% } %>

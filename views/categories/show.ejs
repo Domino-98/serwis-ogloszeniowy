@@ -9,46 +9,44 @@
         <p class="no-category-alert">Brak ogłoszeń w tej kategorii</p>
     <% } %>
 
-    <% categoryAds.docs.forEach(ad => { %>
-    
+	<section class="section">
+		<% categoryAds.docs.forEach(ad => { %>
+			<div class="ad">
+				<a class="ad__image-link" href="../<%=ad._id%>">
+					<% if (ad.images.length > 0) { %>
+					<img src="<%=ad.images[0].url%>" alt="Image" class="ad__image">
+					<% } else { %>
+					<img src="../../public/images/no-image.jpg" alt="Image" class="ad__image-none">
+					<% } %>
+				</a>
 
-    <section class="ad">
-        
-        <a class="ad__image-link" href="../<%=ad._id%>">
-            <% if (ad.images.length > 0) { %>
-            <img src="<%=ad.images[0].url%>" alt="Image" class="ad__image">
-            <% } else { %>
-            <img src="../../public/images/no-image.jpg" alt="Image" class="ad__image-none"> 
-            <% } %>
-        </a>
+				<a href="../<%=ad._id%>" class="ad__title u-margin-top-small"><%= ad.title %></a>
 
+				<%
+					const date = new Date(ad.updatedAt)
+					const updatedAt = date.getFullYear()+'-' + (date.getMonth()<10?'0':'') + (date.getMonth()+1) + '-'+ (date.getDate()<10?'0':'') + date.getDate() + ' ' + date.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes();
+				%>
 
-        <a href="../<%=ad._id%>" class="ad__title u-margin-top-small"><%= ad.title %></a>
+				<div class="ad__date-location">
+					<div class="ad__location">
+						<i class="fas fa-map-marker-alt ad__location-icon"></i>
+						<span class="ad__location-text"><%=ad.location%></span>
+					</div>
+					<p class="ad__creation-date"><%=updatedAt%></p>
+				</div>
 
-        <%  
-            const date = new Date(ad.updatedAt) 
-            const updatedAt = date.getFullYear()+'-' + (date.getMonth()<10?'0':'') + (date.getMonth()+1) + '-'+ (date.getDate()<10?'0':'') + date.getDate() + ' ' + date.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes();
-        %>
-        
-        <div class="ad__date-location">
-            <div class="ad__location">
-                <i class="fas fa-map-marker-alt ad__location-icon"></i>
-                <span class="ad__location-text"><%=ad.location%></span>
-            </div>
-            <p class="ad__creation-date"><%=updatedAt%></p>
-        </div>
+				<div class="ad__price-observe">
+					<span class="ad__price"><%=ad.price%> zł</span>
+					<% if (!currentUser) { %>
+						<a class="ad__observe-icon" href="/watched/<%=ad._id%>/add"><i title="Dodaj do obserwowanych" class="far fa-star"></i></a>
+					<% } else if (currentUser._id.toString() != ad.author) { %>
+						<a class="ad__observe-icon" href="/watched/<%=ad._id%>/add"><i title="Dodaj do obserwowanych" class="far fa-star"></i></a>
+					<% } %>
+				</div>
 
-        <div class="ad__price-observe">
-            <span class="ad__price"><%=ad.price%> zł</span>
-            <% if (!currentUser) { %>
-                <a class="ad__observe-icon" href="/watched/<%=ad._id%>/add"><i title="Dodaj do obserwowanych" class="far fa-star"></i></a>
-            <% } else if (currentUser._id.toString() != ad.author) { %>
-                <a class="ad__observe-icon" href="/watched/<%=ad._id%>/add"><i title="Dodaj do obserwowanych" class="far fa-star"></i></a>
-            <% } %>
-        </div>
-
-    </section>
-    <% }); %>
+			</div>
+		<% }); %>
+	</section>
 </main>
 
     <% if (categoryAds.totalDocs > 12) { %>
@@ -60,5 +58,5 @@
         <% if (!(categoryAds.hasNextPage) || categoryAds.nextPage == categoryAds.totalPages) {  %>  <% } else { %><a  class="pagination__btn" href="/category/<%=category.name%>?page=<%=categoryAds.nextPage%>#ads"><%=categoryAds.nextPage%></a><% } %>
         <% if (categoryAds.page == categoryAds.totalPages) { %>  <% } else { %> <a  class="pagination__btn" href="/category/<%=category.name%>?page=<%=categoryAds.totalPages%>#ads"><%=categoryAds.totalPages%></a><% } %>
         <% if (!(categoryAds.hasNextPage)) { categoryAds.nextPage = categoryAds.totalPages } %> <a  class="pagination__btn next" href="/category/<%=category.name%>?page=<%=categoryAds.nextPage%>#ads"><i class="fas fa-angle-right"></i></a>
-    </div>    
+    </div>
     <% } %>

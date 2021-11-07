@@ -269,7 +269,7 @@
         display: none;
         width: 80%;
         margin: 0 auto;
-        
+
         @media only screen and (max-width: $bp-small) {
             display: block;
             margin-top: 12rem;
@@ -483,7 +483,7 @@
         pointer-events: none;
         transition: all .3s ease;
     }
- 
+
     &__input {
         width: 100%;
         padding: 1rem 2rem;
@@ -913,7 +913,7 @@ input[type=file]::file-selector-button:hover {
     background-color: #fff;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     border-radius: 1rem;
-    
+
     @media only screen and (max-width: $bp-small) {
         width: 80%;
         margin-top: 4rem;
@@ -1002,7 +1002,7 @@ input[type=file]::file-selector-button:hover {
             color: $color-grey-dark-1;
         }
 
-        &::-moz-placeholder { 
+        &::-moz-placeholder {
             color: $color-grey-dark-1;
             opacity: 1
         }
@@ -1119,7 +1119,7 @@ input[type=file]::file-selector-button:hover {
         animation-name: fade;
         animation-duration: 0.3s;
     }
-    
+
     @media only screen and (max-width: $bp-medium) {
         &__img {
             width: 100%;
