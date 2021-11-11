@@ -1,0 +1,19 @@
+<% layout('layouts/boilerplate') %>
+<div class="user" style="margin-top: 15rem">
+	<h3 class="heading-3 u-margin-top u-center-text">Wpisz nowe hasło</h3>
+    <form class="user__form" action="/reset/<%=token%>" method="POST">
+        <div class="user__group">
+            <input class="user__input" type="password" id="password" name="password" placeholder="Nowe hasło" autofocus required>
+            <label class="user__icon" for="password">
+				<i class="fas fa-lock"></i>
+            </label>
+        </div>
+        <div class="user__group u-margin-bottom">
+            <input class="user__input" type="password" id="confirm" name="confirm" placeholder="Potwierdź hasło" required>
+            <label class="user__icon" for="confirm">
+				<i class="fas fa-lock"></i>
+            </label>
+        </div>
+        <button class="btn btn--medium" type="submit">Zmień hasło</button>
+    </form>
+</div>

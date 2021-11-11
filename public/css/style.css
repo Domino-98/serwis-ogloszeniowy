@@ -764,6 +764,15 @@ input[type=file]::file-selector-button:hover {
       opacity: 1; }
     .user__input::placeholder {
       color: #777; }
+  .user__forgot-link {
+    font-size: 1.4rem;
+    font-weight: 700;
+    transition: color .2s; }
+    .user__forgot-link:link, .user__forgot-link:visited {
+      text-decoration: none;
+      color: #ef233c; }
+    .user__forgot-link:hover {
+      color: #14213d; }
 
 .contact {
   width: 50%;

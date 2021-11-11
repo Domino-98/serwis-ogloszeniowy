@@ -1011,6 +1011,24 @@ input[type=file]::file-selector-button:hover {
             color: $color-grey-dark-1;
         }
     }
+
+	&__forgot {
+			&-link {
+				font-size: 1.4rem;
+				font-weight: 700;
+				transition: color .2s;
+
+				&:link,
+				&:visited {
+					text-decoration: none;
+					color: $color-secondary;
+				}
+
+				&:hover {
+					color: $color-primary-dark;
+				}
+		}
+	}
 }
 
 .contact {

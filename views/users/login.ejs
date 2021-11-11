@@ -4,7 +4,7 @@
         <a class="user__select-login active"href="/login">Logowanie</a>
         <a class="user__select-register" href="/register">Rejestracja</a>
     </div>
-    <h1 class="heading-2 u-margin-top u-center-text">Zaloguj się</h1>
+    <h2 class="heading-2 u-margin-top u-center-text">Zaloguj się</h2>
     <form class="user__form" action="/login" method="POST">
         <div class="user__group">
             <input class="user__input" type="email" id="email" name="email" placeholder="Email" autofocus required>
@@ -12,12 +12,15 @@
                 <i class="fas fa-envelope"></i>
             </label>
         </div>
-        <div class="user__group u-margin-bottom">
+        <div class="user__group u-margin-bottom-small">
             <input class="user__input" type="password" id="password" name="password" placeholder="Hasło" required>
             <label class="user__icon" for="password">
                 <i class="fas fa-lock"></i>
             </label>
         </div>
+		<div class="user__forgot  u-margin-bottom-small">
+			<a href="/forgot" class="user__forgot-link">Zapomniałem hasła</a>
+		</div>
         <button class="btn btn--medium" type="submit">Zaloguj się</button>
     </form>
 </div>
