@@ -15,7 +15,7 @@
                     </div>
                 </div>
             <% } else { %>
-            <img src="../../public/images/no-image.jpg" alt="Image" class="no-img"> 
+            <img src="../../public/images/no-image.jpg" alt="Image" class="no-img">
             <% } %>
 
 
@@ -33,15 +33,15 @@
                 <% } %>
 
                 <div class="card__title">
-                    <h3><%=ad.title%></h3>    
-                    <%  
-                        const date = new Date(ad.updatedAt) 
+                    <h3><%=ad.title%></h3>
+                    <%
+                        const date = new Date(ad.updatedAt)
                         const updatedAt = date.getFullYear()+'-' + (date.getMonth()<10?'0':'') + (date.getMonth()+1) + '-'+ (date.getDate()<10?'0':'') + date.getDate() + ' ' + date.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes();
                     %>
                    <p class="card__author">Wystawiający: <%=ad.author.username%></p>
                    <p class="ad__creation-date">Utworzono <%=updatedAt%></p>
                 </div>
-    
+
                 <% if (!(currentUser && ad.author.equals(currentUser._id))) { %>
                 <div class="card__contact">
                     <a class="card__contact-text" href="#contact">
@@ -66,21 +66,21 @@
                 </div>
 
         </div>
-        
+
     </div>
 
     <div class="description-box">
         <div class="description-box__title">
             <h3 class="heading-3">Opis:</h3>
         </div>
-        
+
         <p class="description-box__text">
             <%=ad.description%>
         </p>
 
         <% if (currentUser && ad.author.equals(currentUser._id)  || (currentUser && currentUser.isAdmin == true)) { %>
         <div class="description-box__buttons">
-            <div>              
+            <div>
                 <a class="btn btn--small" href="/<%=ad._id%>/edit">Edytuj ogłoszenie</a>
             </div>
             <div>
@@ -111,28 +111,28 @@
 
 <script src="../../node_modules/@splidejs/splide/dist/js/splide.min.js"></script>
 <script>
-    let adImgs = <%-ad.images.length%>;
-    
-    if (adImgs > 0) {
-        document.addEventListener('DOMContentLoaded', function () {
-            new Splide('#splide').mount();
-        });
-    }
+	let adImgs= <%-ad.images.length%>;
+
+	if (adImgs>0) {
+		document.addEventListener('DOMContentLoaded', function () {
+			new Splide('#splide').mount();
+		});
+	}
 </script>
 
 <script src="../../public/js/imgModal.js"></script>
 
 <script>
-    const contactEl=document.querySelector('.card__phone')
-    const contactText=document.querySelector('.card__phone-text');
-    const contactNum=  <%=ad.contactNumber%>;
+	const contactEl=document.querySelector('.card__phone')
+	const contactText=document.querySelector('.card__phone-text');
+	const contactNum=  <%=ad.contactNumber%>;
 
-    const showContact=() => {
-        contactText.textContent=contactNum;
-        contactEl.style.cursor='default';
-        contactEl.removeAttribute('title');
-        contactText.style.fontWeight='700';
-    }
+	const showContact=() => {
+		contactText.textContent=contactNum;
+		contactEl.style.cursor='default';
+		contactEl.removeAttribute('title');
+		contactText.style.fontWeight='700';
+	}
 
-    contactEl.addEventListener('click', showContact);
+	contactEl.addEventListener('click', showContact);
 </script>

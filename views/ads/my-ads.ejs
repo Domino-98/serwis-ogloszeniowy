@@ -19,24 +19,29 @@
 					<% } %>
 				</a>
 
-				<a href="../<%=ad._id%>" class="ad__title u-margin-top-small"><%= ad.title %></a>
+				<div class="ad__info">
+					<a href="../<%=ad._id%>" class="ad__title u-margin-bottom-small">
+						<%= ad.title %>
+					</a>
 
-				<%
-					const date = new Date(ad.updatedAt)
-					const updatedAt = date.getFullYear()+'-' + (date.getMonth()<10?'0':'') + (date.getMonth()+1) + '-'+ (date.getDate()<10?'0':'') + date.getDate() + ' ' + date.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes();
-				%>
+					<%
+						const date = new Date(ad.updatedAt)
+						const updatedAt = date.getFullYear()+'-' + (date.getMonth()<10?'0':'') + (date.getMonth()+1) + '-'+ (date.getDate()<10?'0':'') + date.getDate() + ' ' + date.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes();
+					%>
 
-				<div class="ad__date-location">
-					<div class="ad__location">
-						<i class="fas fa-map-marker-alt ad__location-icon"></i>
-						<span class="ad__location-text"><%=ad.location%></span>
+					<div class="ad__date-location">
+						<div class="ad__location">
+							<i class="fas fa-map-marker-alt ad__location-icon"></i>
+							<span class="ad__location-text"><%=ad.location%></span>
+						</div>
+						<p class="ad__creation-date"><%=updatedAt%></p>
 					</div>
-					<p class="ad__creation-date"><%=updatedAt%></p>
+
+					<div class="ad__price-observe">
+						<span class="ad__price"><%=ad.price%> zł</span>
+					</div>
 				</div>
 
-				<div class="ad__price-observe">
-					<span class="ad__price"><%=ad.price%> zł</span>
-				</div>
 			</div>
 		<% }); %>
 	</section>

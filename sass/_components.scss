@@ -52,7 +52,6 @@
     width: calc(25% - 2rem);
     margin: 2rem 1rem;
     background-color: #fff;
-    padding: 1rem;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     border-radius: 1rem;
 
@@ -67,6 +66,12 @@
     @media only screen and (max-width: $bp-small) {
         width: calc(100% - 2rem);
     }
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		padding: 1rem;
+	}
 
     &__title {
         white-space: nowrap;
@@ -127,7 +132,8 @@
     &__image {
         width: 100%;
         height: 100%;
-        border-radius: 1rem;
+        border-top-right-radius: 1rem;
+        border-top-left-radius: 1rem;
         object-fit: cover;
 
         &-link {
@@ -142,7 +148,8 @@
         &-none {
             width: 100%;
             height: 100%;
-            border-radius: 1rem;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
             object-fit: cover;
         }
     }
@@ -537,20 +544,20 @@ input[type=file]::file-selector-button:hover {
 
 .card-wrapper {
     width: 100%;
-    max-width: 100rem;
+    max-width: 110rem;
     padding: 0 5rem;
 }
 
 .card {
     display: flex;
     align-items: center;
-    padding: 2rem;
     margin-top: 16rem;
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
     border-radius: 1rem;
     word-break: break-all;
     position: relative;
+    overflow: hidden;
 
     @media only screen and (max-width: $bp-medium) {
         flex-direction: column;
@@ -566,7 +573,8 @@ input[type=file]::file-selector-button:hover {
         justify-content: space-between;
         max-width: 25rem;
         align-self: stretch;
-        margin-left: 4rem;
+		padding: 2.5rem 0;
+		padding-left: 2rem;
         color: $color-grey-dark-2;
         word-break: break-word;
 
@@ -574,7 +582,6 @@ input[type=file]::file-selector-button:hover {
             width: 100%;
             max-width: 80%;
             position: relative;
-            margin-left: 1rem;
         }
     }
 
@@ -592,8 +599,8 @@ input[type=file]::file-selector-button:hover {
         }
 
         @media only screen and (max-width: $bp-medium) {
-            top: 0;
-            right: -15%;
+            top: 2rem;
+            right: -20%;
         }
 
     }
@@ -647,7 +654,7 @@ input[type=file]::file-selector-button:hover {
     }
 
     &__location {
-        margin: 1rem 0;
+        margin-top: 1rem;
         font-size: 1.8rem;
 
         &-icon {
@@ -1070,26 +1077,31 @@ input[type=file]::file-selector-button:hover {
 }
 
 .splide {
-    width: 60%;
-    height: 100%;
-    border-radius: 1rem;
-    overflow: hidden;
+    width: 66.6%;
+	height: 100%;
+	max-height: 50rem;
+	overflow: hidden;
 
     @media only screen and (max-width: $bp-medium) {
         width: 100%;
-        margin-bottom: 5rem;
+		margin-bottom: 1rem;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+		border-top-right-radius: 1rem;
+		border-top-left-radius: 1rem;
     }
 }
 
 .img {
     height: 100%;
-    width: 100%;
+	width: 100%;
     cursor: zoom-in;
     object-fit: cover;
 }
 
 .no-img {
     width: 60%;
+	max-height: 50rem;
 
     @media only screen and (max-width: $bp-medium) {
         margin-bottom: 5rem;

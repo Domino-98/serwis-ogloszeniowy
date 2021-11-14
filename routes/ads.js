@@ -25,7 +25,7 @@ router.get("/category/:name", async (req, res) => {
     { category: category._id },
     { limit: limit, page: page }
   );
-  res.render("categories/show", { categoryAds, category });
+  res.render("categories/index", { categoryAds, category });
 });
 
 router.get("/", async (req, res) => {
