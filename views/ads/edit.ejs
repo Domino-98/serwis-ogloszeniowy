@@ -3,7 +3,7 @@
     <h1 class="heading-1 u-margin-bottom u-center-text">Edytuj ogłoszenie</h1>
     <form class="new-ad__form" action="/<%=ad._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
         <div class="new-ad__group">
-            <input class="new-ad__input" type="text" id="title" name="ad[title]" maxlength="60" required value="<%=ad.title%>">
+            <input class="new-ad__input" type="text" id="title" name="ad[title]" maxlength="60" placeholder="Tytuł" required value="<%=ad.title%>">
             <label class="new-ad__label" for="title">Tytuł</label>
         </div>
         <div class="new-ad__group">
@@ -15,13 +15,13 @@
                <% } else {%>
                 ''
                 <% } %>>Motoryzacja</option>
-               <option value="Elektronika" 
+               <option value="Elektronika"
                <% if (ad.category.name == "Elektronika") { %>
                 selected
                <% } else {%>
                 ''
                 <% } %>>Elektronika</option>
-               <option value="Zwierzęta" 
+               <option value="Zwierzęta"
                <% if (ad.category.name == "Zwierzęta") { %>
                 selected
                <% } else {%>
@@ -105,28 +105,29 @@
                <% } else {%>
                 ''
                 <% } %>>Oddam za darmo</option>
-            </select>        
+            </select>
         </div>
         <div class="new-ad__group">
-            <input class="new-ad__input" type="number" step="0.01" type="text" id="price" name="ad[price]" onkeypress="return isNumberKey(event)" required value="<%=ad.price%>">
+            <input class="new-ad__input" type="number" step="0.01" type="text" id="price" name="ad[price]" placeholder="Cena" onkeypress="return isNumberKey(event)" required value="<%=ad.price%>">
             <label class="new-ad__label" for="price">Cena</label>
         </div>
         <div class="new-ad__group">
-            <textarea class="new-ad__input"  id="description" name="ad[description]" rows="4" maxlength="1000" required><%=ad.description%></textarea>
+            <textarea class="new-ad__input"  id="description" name="ad[description]" rows="4" maxlength="1000" placeholder="Opis" required><%=ad.description%></textarea>
             <label class="new-ad__label" for="description">Opis</label>
         </div>
-        <div class="new-ad__group">            
-            <input class="new-ad__input" type="number" id="contactNumber" name="ad[contactNumber]" onkeypress="return isNumberKey(event)" value="<%=ad.contactNumber%>" required>
+        <div class="new-ad__group">
+            <input class="new-ad__input" type="text" id="contactNumber" name="ad[contactNumber]" pattern=".{9,15}" maxlength="15" placeholder="Numer telefonu" onkeypress="return isNumberKey(event)" value="<%=ad.contactNumber%>" title="Numer telefonu musi składać się z conajmniej 9 cyfr" required>
             <label for="contactNumber" class="new-ad__label">Numer kontaktowy</label>
         </div>
-        <div class="new-ad__group u-margin-bottom-big">            
-            <input class="new-ad__input" type="text" id="location" name="ad[location]" maxlength="40" value="<%=ad.location%>" required>
+        <div class="new-ad__group u-margin-bottom-big">
+            <input class="new-ad__input" type="text" id="location" name="ad[location]" maxlength="40" value="<%=ad.location%>" placeholder="Miejscowość" required>
             <label for="location" class="new-ad__label">Miejscowość</label>
         </div>
-        <div class="new-ad__group">
+        <div class="new-ad__group new-ad__group--upload">
             <label class="new-ad__upload-label" for="image">Dodaj zdjęcia</label>
             <input type="file" name="image" id="image" multiple>
          </div>
+		 <% if (ad.images.length > 0) { %>
          <div class="new-ad__group">
              <div class="new-ad__images">
                 <% ad.images.forEach((img, i) => { %>
@@ -140,17 +141,18 @@
                 <% }) %>
              </div>
          </div>
+		 <% } %>
         <button class="btn" type="submit">Edytuj</button>
     </form>
 </div>
 
 <script>
-    function isNumberKey(evt) {
-        var charCode=(evt.which)? evt.which:evt.keyCode;
-        if (charCode!=46&&charCode>31
-            &&(charCode<48||charCode>57))
-            return false;
+	function isNumberKey(evt) {
+		var charCode=(evt.which)? evt.which:evt.keyCode;
+		if (charCode!=46&&charCode>31
+			&&(charCode<48||charCode>57))
+			return false;
 
-        return true;
-    }
+		return true;
+	}
 </script>

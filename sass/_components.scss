@@ -426,6 +426,8 @@
 
     &__images {
         display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
     }
 
     &__img {
@@ -439,7 +441,6 @@
         &-thumbnail {
             width: 12rem;
             height: 8rem;
-            border: 1px solid $color-grey-dark-1;
             margin: 1rem .5rem;
         }
 
@@ -475,10 +476,15 @@
     &__group {
         display: flex;
         flex-direction: column;
-        align-items: center;
         position: relative;
         margin-top: 1.5rem;
-        margin-bottom: 4rem;
+		margin-bottom: 4rem;
+
+		&--upload {
+			align-items: center;
+			margin-top: -1rem;
+			margin-bottom: 2rem;
+		}
     }
 
     &__label {
@@ -502,6 +508,10 @@
         box-shadow: 0 0 5px rgba(0, 0, 0, .5);
         border: 1px solid $color-grey-light-1;
 
+		&::placeholder {
+			color: transparent;
+		}
+
         &[type=number] {
             appearance: textfield;
         }
@@ -513,7 +523,8 @@
         }
 
         &:focus~.new-ad__label,
-        &:not(:focus):valid~.new-ad__label {
+        &:not(:focus):valid~.new-ad__label,
+		&:not(:placeholder-shown)~.new-ad__label  {
             top: -3rem;
             left: -0.5rem;
             color: #000;
@@ -777,29 +788,6 @@ input[type=file]::file-selector-button:hover {
     margin: 2rem auto;
     font-size: 2.5rem;
     color: $color-secondary;
-}
-
-.heading-1 {
-    text-transform: uppercase;
-    font-size: 3rem;
-    letter-spacing: 1px;
-    word-spacing: .5rem;
-}
-
-@media only screen and (max-width: $bp-small) {
-    h1.heading-1 {
-        margin-top: 5rem !important;
-    }
-}
-
-.heading-2 {
-    font-size: 2.75rem;
-    letter-spacing: 1px;
-    word-spacing: .5rem;
-}
-
-.heading-3 {
-    font-size: 2.5rem;
 }
 
 .flash {
@@ -1160,6 +1148,44 @@ input[type=file]::file-selector-button:hover {
             top: 12.5%;
         }
     }
+}
+
+// Custom checkbox
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+}
+
+input[type="checkbox"] {
+  display: grid;
+  place-content: center;
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid $color-primary-dark;
+  border-radius: 5px;
+  transform: translateY(-0.01rem);
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 1.2rem;
+  height: 1.2rem;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1.2rem 1.2rem $color-secondary;
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
 }
 
 @keyframes fade {
